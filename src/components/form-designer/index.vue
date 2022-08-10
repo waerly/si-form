@@ -10,7 +10,7 @@
 
 <template>
   <el-container class="main-container full-height">
-    <el-header class="main-header">
+    <el-header class="main-header " style="display: none">
       <div class="float-left main-title">
         <img src="../../assets/vform-logo.png" @click="openHome">
         <span class="bold">VForm</span> {{i18nt('application.productTitle')}} <span class="version-span">Ver {{vFormVersion}}</span></div>
@@ -103,8 +103,8 @@
         type: Object,
         default: () => {
           return {
-            languageMenu: true,  //是否显示语言切换菜单
-            externalLink: true,  //是否显示GitHub、文档等外部链接
+            languageMenu: false,  //是否显示语言切换菜单
+            externalLink: false,  //是否显示GitHub、文档等外部链接
             formTemplates: true,  //是否显示表单模板
             eventCollapse: true,  //是否显示组件事件属性折叠面板
             widgetNameReadonly: false,  //禁止修改组件名称
@@ -114,7 +114,7 @@
             importJsonButton: true,  //是否显示导入JSON按钮
             exportJsonButton: true,  //是否显示导出JSON器按钮
             exportCodeButton: true,  //是否显示导出代码按钮
-            generateSFCButton: true,  //是否显示生成SFC按钮
+            generateSFCButton: false,  //是否显示生成SFC按钮
             toolbarMaxWidth: 420,  //设计器工具按钮栏最大宽度（单位像素）
             toolbarMinWidth: 300,  //设计器工具按钮栏最小宽度（单位像素）
 
@@ -154,6 +154,7 @@
       }
     },
     created() {
+      console.log("config:",this.designerConfig)
       this.vsCodeFlag = getQueryParam('vscode') == 1
       this.caseName = getQueryParam('case')
     },
@@ -174,7 +175,7 @@
     methods: {
       showLink(configName) {
         if (this.designerConfig[configName] === undefined) {
-          return true
+          return false
         }
 
         return !!this.designerConfig[configName]

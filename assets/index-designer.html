@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <title>VForm Designer Demo</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.7/theme-chalk/index.min.css">
+    <link rel="stylesheet" href="/dist/lib/VFormDesigner.css?t=20210730"> <!-- 根据Web服务器或CDN路径修改 -->
+</head>
+<body>
+
+<div id="app">
+    <v-form-designer ref="VFDesigner"></v-form-designer>
+</div>
+
+<script type="text/javascript">
+    if (!!window.ActiveXObject || "ActiveXObject" in window) { //IE load polyfill.js for Promise
+        var scriptEle = document.createElement("script");
+        scriptEle.type = "text/javascript";
+        scriptEle.src = "https://cdn.bootcss.com/babel-polyfill/6.23.0/polyfill.min.js"
+        document.body.appendChild(scriptEle)
+    }
+</script>
+<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/2.6.14/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/element-ui/2.15.7/index.min.js"></script>
+<script src="/dist/lib/VFormDesigner.umd.min.js?t=20210730"></script> <!-- 根据Web服务器或CDN路径修改 -->
+<script>
+    new Vue({
+        el: '#app',
+    });
+</script>
+</body>
+</html>
