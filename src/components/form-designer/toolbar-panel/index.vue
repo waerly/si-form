@@ -299,6 +299,8 @@
     },
     methods: {
       showToolButton(configName) {
+        //如果当前项目使用配置时
+
         if (this.designerConfig[configName] === undefined) {
           return true
         }

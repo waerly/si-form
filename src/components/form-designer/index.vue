@@ -32,7 +32,7 @@
 
     <el-container>
       <el-aside class="side-panel">
-        <widget-panel :designer="designer" />
+        <widget-panel :designer="designer" ref="widgetRef"/>
       </el-aside>
 
       <el-container class="center-layout-container">
@@ -154,7 +154,6 @@
       }
     },
     created() {
-      console.log("config:",this.designerConfig)
       this.vsCodeFlag = getQueryParam('vscode') == 1
       this.caseName = getQueryParam('case')
     },

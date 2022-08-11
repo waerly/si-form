@@ -30,6 +30,9 @@ npm run lib-render
 
 ### 使用 
 
+```
+npm run lib
+```
 
 
 ### 引用说明

@@ -24,6 +24,15 @@ export default {
       }
     }
   },
+  created() {
+    //查看当前节点
+
+    // this.$nextTick(function(){
+    //   console.log(this.$refs.vfDesignerRef.getWidgetRef("widgetRef"))
+    //   console.log(this.$refs.vfDesignerRef.$refs.widgetRef)
+    //   console.log(this.$refs.vfDesignerRef)
+    // })
+  },
   methods: {
     printFormJson() {
       console.log( this.$refs.vfDesignerRef.getFormJson() )

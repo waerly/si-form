@@ -111,6 +111,7 @@
 
     },
     created() {
+      // console.log(this.designer.widgetList)
       this.designer.initDesigner( !!this.getDesignerConfig().resetFormJson );
       this.designer.loadPresetCssCode( this.getDesignerConfig().presetCssCode )
     },
@@ -134,7 +135,7 @@
       },
 
       onDragEnd(evt) {
-        //console.log('drag end000', evt)
+        // console.log('drag end000', evt)
       },
 
       onDragAdd(evt) {

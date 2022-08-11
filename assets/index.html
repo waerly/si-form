@@ -16,6 +16,8 @@
     <v-form-render :form-json="formJson" :form-data="formData" :option-data="optionData" ref="vFormRef">
     </v-form-render>
     <el-button type="primary" @click="submitForm">Submit</el-button>
+    <el-button type="primary" @click="fastImportJson">快速导入json</el-button>
+    <el-button type="primary" @click="fastExportJson">快速导出json</el-button>
 </div>
 
 <script type="text/javascript">
@@ -30,6 +32,7 @@
 <script src="element-ui/element-ui.js"></script>
 <script src="../dist/lib-render/VFormRender.umd.min.js?t=20210730"></script> <!-- 根据Web服务器或CDN路径修改 -->
 <script>
+    let dataJson;
     new Vue({
         el: '#app',
         data: {
@@ -38,7 +41,7 @@
             optionData: {}
         },
         created() {
-            let data={
+            dataJson={
                 "widgetList": [
                 {
                     "type": "static-text",
@@ -851,10 +854,24 @@
             }
             };
 
-            this.formJson=data;
+            // this.formJson=data;
         },
         methods: {
+            fastImportJson(){
+                //快速导入
+                console.log(this.$refs.vFormRef.setFormJson(dataJson))
+
+
+                //测试新增一个组件
+
+
+            },
+            fastExportJson(){
+                let formJson=this.$refs.vFormRef.getFormJson();
+                console.log(formJson)
+            },
             submitForm: function() {
+                //获取json
                 this.$refs.vFormRef.getFormData().then( function(formData) {
                     // Form Validation OK
                     alert( JSON.stringify(formData) )
