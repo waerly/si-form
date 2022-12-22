@@ -232,6 +232,7 @@
         }
 
         let originalPropName = propName.replace(this.selectedWidget.type + '-', '')  //去掉组件名称前缀-，如果有的话！！
+        // console.log(this.selectedWidget.type,originalPropName)
         return this.designer.hasConfig(this.selectedWidget, originalPropName)
       },
 

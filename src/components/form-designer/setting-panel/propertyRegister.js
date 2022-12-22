@@ -48,6 +48,7 @@ const COMMON_PROPERTIES = {
   'optionItems'       :            'optionItems-editor',
   'uploadURL'         :            'uploadURL-editor',
   'uploadTip'         :            'uploadTip-editor',
+  'uploadGe'          :            'uploadGe-editor',
   'withCredentials'   :            'withCredentials-editor',
   'multipleSelect'    :            'multipleSelect-editor',
   'limit'             :            'limit-editor',

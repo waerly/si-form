@@ -336,6 +336,13 @@ const elTemplates = {  //字段组件属性
     return `<vue-editor ${vModel} ${disabled} ${placeholder}></vue-editor>`
   },
 
+  /*富文本2 wang-edit*/
+  'rich2-editor': (widget, formConfig) => {
+    const {vModel, disabled, placeholder
+    } = getElAttrs(widget, formConfig)
+    return `<vue-editor ${vModel} ${disabled} ${placeholder}></vue-editor>`
+  },
+
   'cascader': (widget, formConfig) => {
     const {vModel, disabled, size, clearable, filterable, placeholder} = getElAttrs(widget, formConfig)
     let wop = widget.options

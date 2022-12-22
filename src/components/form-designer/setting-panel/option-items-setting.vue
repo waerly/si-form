@@ -6,8 +6,12 @@
                  v-bind="{group:'optionsGroup', ghostClass: 'ghost', handle: '.drag-option'}">
         <li v-for="(option, idx) in optionModel.optionItems" :key="idx">
           <el-radio :label="option.value">
-            <el-input v-model="option.value" size="mini" style="width: 100px"></el-input>
-            <el-input v-model="option.label" size="mini" style="width: 100px"></el-input>
+            <el-input v-model="option.value" size="mini" style="width: 80px"></el-input>
+            <el-input v-model="option.label" size="mini" style="width: 120px">
+              <template #prefix>
+                <i @click="handlerIconClick(option)" :style="{padding:'3px','border-radius':'3px', 'color':option.c,'background-color':option.bc}" :class="option.i?option.i:'el-icon-edit'">&nbsp;</i>
+              </template>
+            </el-input>
             <i class="iconfont icon-drag drag-option"></i>
             <el-button circle plain size="mini" type="danger" @click="deleteOption(option, idx)"
                        icon="el-icon-minus" class="col-delete-button"></el-button>
@@ -21,8 +25,9 @@
                  v-bind="{group:'optionsGroup', ghostClass: 'ghost', handle: '.drag-option'}">
         <li v-for="(option, idx) in optionModel.optionItems" :key="idx">
           <el-checkbox :label="option.value">
-            <el-input v-model="option.value" size="mini" style="width: 100px"></el-input>
-            <el-input v-model="option.label" size="mini" style="width: 100px"></el-input>
+            <el-input v-model="option.value" size="mini" style="width: 80px"></el-input>
+            <el-input v-model="option.label" size="mini" style="width: 120px"></el-input>
+            <!--            <el-input v-model="option.i" size="mini" style="width: 40px"></el-input>-->
             <i class="iconfont icon-drag drag-option"></i>
             <el-button circle plain size="mini" type="danger" @click="deleteOption(option, idx)"
                        icon="el-icon-minus" class="col-delete-button"></el-button>
@@ -63,9 +68,17 @@
                :close-on-click-modal="false" :close-on-press-escape="false" :destroy-on-close="true">
       <code-editor v-model="cascaderOptions" mode="json" :readonly="false"></code-editor>
       <div slot="footer" class="dialog-footer">
-        <el-button size="large" type="primary" @click="saveCascaderOptions">{{i18nt('designer.hint.confirm')}}</el-button>
-        <el-button size="large" type="" @click="showImportCascaderDialogFlag = false">{{i18nt('designer.hint.cancel')}}</el-button>
+        <el-button size="large" type="primary" @click="saveCascaderOptions">{{ i18nt('designer.hint.confirm') }}
+        </el-button>
+        <el-button size="large" type="" @click="showImportCascaderDialogFlag = false">
+          {{ i18nt('designer.hint.cancel') }}
+        </el-button>
       </div>
+    </el-dialog>
+    <el-dialog v-if="optionStyleEditorFlag" :visible.sync="optionStyleEditorFlag"
+               :show-close="true" :close-on-click-modal="false" :close-on-press-escape="false" :destroy-on-close="true">
+      <option-style-editor :option="currentOption" @save="handlerOptionStyleSave" @close="handlerOptionStyleClose">
+      </option-style-editor>
     </el-dialog>
   </div>
 </template>
@@ -73,6 +86,7 @@
 <script>
   import Draggable from 'vuedraggable'
   import CodeEditor from '@/components/code-editor/index'
+  import OptionStyleEditor from '@/components/form-designer/setting-panel/option-style-editor'
   import i18n from "@/utils/i18n";
 
   export default {
@@ -82,6 +96,7 @@
       Draggable,
       //CodeEditor: () => import('@/components/code-editor/index'),
       CodeEditor,
+      OptionStyleEditor
     },
     props: {
       designer: Object,
@@ -91,12 +106,15 @@
       return {
         showImportDialogFlag: false,
         optionLines: '',
-
         cascaderOptions: '',
         showImportCascaderDialogFlag: false,
 
         //separator: '||',
         separator: ',',
+
+        //new
+        currentOption:{},
+        optionStyleEditorFlag: false,
       }
     },
     computed: {
@@ -204,7 +222,17 @@
           this.$message.error(this.i18nt('designer.hint.invalidOptionsData') + ex.message)
         }
       },
-
+      handlerIconClick(opt) {
+        // this.optionStyleEditorFlag = !this.optionStyleEditorFlag;
+        this.optionStyleEditorFlag = true;
+        this.currentOption = opt;
+      },
+      handlerOptionStyleClose(){
+        this.optionStyleEditorFlag = false;
+      },
+      handlerOptionStyleSave(option){
+        console.log("保存",option,this.currentOption)
+      }
     }
   }
 </script>

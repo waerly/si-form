@@ -49,6 +49,7 @@
   } from "@/utils/util"
   import i18n, { changeLocale } from "../../utils/i18n"
 
+  // console.log("FieldComponents:",FieldComponents)
   export default {
     name: "VFormRender",
     componentName: 'VFormRender',

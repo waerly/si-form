@@ -55,6 +55,7 @@ export default {
       'picture-upload': '图片',
       'file-upload':    '文件',
       'rich-editor':    '富文本',
+      'rich2-editor':    '富文本2',
       cascader:         '级联选择',
       slot:             '插槽',
 
@@ -220,6 +221,7 @@ export default {
       resetDefault: '重设选中项',
       uploadSetting: '上传参数设置',
       uploadURL: '上传地址',
+      uploadGe: '上传通用地址',
       uploadTip: '上传提示内容',
       withCredentials: '发送cookie凭证',
       multipleSelect: '文件可多选',

@@ -55,6 +55,7 @@ export default {
       'picture-upload': 'Picture',
       'file-upload':    'File',
       'rich-editor':    'Rich Editor',
+      'rich2-editor':    'Rich2 Editor',
       cascader:         'Cascader',
       slot:             'Slot',
 
@@ -220,6 +221,7 @@ export default {
       resetDefault: 'Reset Default',
       uploadSetting: 'Upload Setting',
       uploadURL: 'Upload URL',
+      uploadGe: 'Upload Ge URL',
       uploadTip: 'Tip Content',
       withCredentials: 'Send Cookie',
       multipleSelect: 'File Multi-select',

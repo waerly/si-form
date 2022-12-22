@@ -638,14 +638,12 @@
       },
 
       handleFormChange(fieldName, newValue, oldValue, formModel) {
-        /*
-        console.log('---formChange start---')
-        console.log('fieldName', fieldName)
-        console.log('newValue', newValue)
-        console.log('oldValue', oldValue)
-        console.log('formModel', formModel)
-        console.log('---formChange end---')
-        */
+        // console.log('---formChange start---')
+        // console.log('fieldName', fieldName)
+        // console.log('newValue', newValue)
+        // console.log('oldValue', oldValue)
+        // console.log('formModel', formModel)
+        // console.log('---formChange end---')
       },
 
       testOnAppendButtonClick(clickedWidget) {

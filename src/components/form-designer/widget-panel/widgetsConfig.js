@@ -862,6 +862,49 @@ export const advancedFields = [
       onValidate: '',
     },
   },
+  {
+    type: 'rich2-editor',
+    icon: 'rich-editor-field',
+    formItemFlag: true,
+    options: {
+      name: '',
+      label: '',
+      labelAlign: '',
+      placeholder: '',
+      labelWidth: null,
+      labelHidden: false,
+      columnWidth: '200px',
+      disabled: false,
+      hidden: false,
+      required: false,
+      requiredHint: '',
+      customRule: '',
+      customRuleHint: '',
+      //-------------------
+      uploadURL: '',
+      uploadTip: '',
+      uploadGe: false,
+      withCredentials: false,
+      multipleSelect: false,
+      showFileList: true,
+      limit: 3,
+      fileMaxSize: 5, //MB
+      // fileTypes: ['jpg', 'jpeg', 'png'],
+      //headers: [],
+      //-------------------
+      customClass: '',  //自定义css类名
+      labelIconClass: null,
+      labelIconPosition: 'rear',
+      labelTooltip: null,
+      minLength: null,
+      maxLength: null,
+      showWordLimit: false,
+      //-------------------
+      onCreated: '',
+      onMounted: '',
+      onValidate: '',
+    },
+  },
 
   {
     type: 'cascader',
