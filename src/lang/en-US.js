@@ -57,6 +57,7 @@ export default {
       'rich-editor':    'Rich Editor',
       'rich2-editor':    'Rich2 Editor',
       cascader:         'Cascader',
+      "cascader-area":  'area',
       slot:             'Slot',
 
       custom:           'Custom Component',

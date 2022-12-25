@@ -57,6 +57,7 @@ export default {
       'rich-editor':    '富文本',
       'rich2-editor':    '富文本2',
       cascader:         '级联选择',
+      "cascader-area":  '地区',
       slot:             '插槽',
 
       custom:           'Custom Component',

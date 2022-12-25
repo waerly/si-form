@@ -396,7 +396,7 @@
                                                 "allowCreate": false,
                                                 "remote": false,
                                                 "automaticDropdown": false,
-                                                "multiple": false,
+                                                "multiple": true,
                                                 "multipleLimit": 0,
                                                 "optionItems": [
                                                     {
@@ -844,85 +844,92 @@
                     "labelPosition": "left",
                     "size": "",
                     "labelAlign": "label-right-align",
-                    "cssCode": "",
-                    "customClass": [],
-                    "functions": "",
-                    "layoutType": "PC",
-                    "onFormCreated": "",
-                    "onFormMounted": "",
-                    "onFormDataChange": ""
-            }
-            };
-
-            dataJson = {
-                "widgetList": [
-                    {
-                        "type": "rich2-editor",
-                        "icon": "rich-editor-field",
-                        "formItemFlag": true,
-                        "options": {
-                            "name": "rich2editor40014",
-                            "label": "rich2-editor",
-                            "labelAlign": "",
-                            "placeholder": "",
-                            "labelWidth": null,
-                            "labelHidden": false,
-                            "columnWidth": "200px",
-                            "disabled": false,
-                            "hidden": false,
-                            "required": false,
-                            "requiredHint": "",
-                            "customRule": "",
-                            "customRuleHint": "",
-                            "uploadURL": "",
-                            "uploadTip": "",
-                            "uploadGe": false,
-                            "withCredentials": false,
-                            "multipleSelect": false,
-                            "showFileList": true,
-                            "limit": 3,
-                            "fileMaxSize": 5,
-                            "customClass": [],
-                            "labelIconClass": null,
-                            "labelIconPosition": "rear",
-                            "labelTooltip": null,
-                            "minLength": null,
-                            "maxLength": null,
-                            "showWordLimit": false,
-                            "onCreated": "",
-                            "onMounted": "",
-                            "onValidate": ""
-                        },
-                        "id": "rich2editor40014"
-                    }
-                ],
-                "formConfig": {
-                    "modelName": "formData",
-                    "refName": "vForm",
-                    "rulesName": "rules",
-                    "labelWidth": 80,
-                    "labelPosition": "left",
-                    "size": "",
-                    "labelAlign": "label-left-align",
-                    "cssCode": "",
-                    "customClass": "",
-                    "functions": "",
-                    "layoutType": "PC",
-                    "onFormCreated": "",
-                    "onFormMounted": "",
-                    "onFormDataChange": ""
+                  "cssCode": "",
+                  "customClass": [],
+                  "functions": "",
+                  "layoutType": "PC",
+                  "onFormCreated": "",
+                  "onFormMounted": "",
+                  "onFormDataChange": ""
                 }
             };
+
+          //测试富文本框载入
+          /*dataJson = {
+              "widgetList": [
+                  {
+                      "type": "rich2-editor",
+                      "icon": "rich-editor-field",
+                      "formItemFlag": true,
+                      "options": {
+                          "name": "rich2editor40014",
+                          "label": "rich2-editor",
+                          "labelAlign": "",
+                          "placeholder": "",
+                          "labelWidth": null,
+                          "labelHidden": false,
+                          "columnWidth": "200px",
+                          "disabled": false,
+                          "hidden": false,
+                          "required": false,
+                          "requiredHint": "",
+                          "customRule": "",
+                          "customRuleHint": "",
+                          "uploadURL": "",
+                          "uploadTip": "",
+                          "uploadGe": false,
+                          "withCredentials": false,
+                          "multipleSelect": false,
+                          "showFileList": true,
+                          "limit": 3,
+                          "fileMaxSize": 5,
+                          "customClass": [],
+                          "labelIconClass": null,
+                          "labelIconPosition": "rear",
+                          "labelTooltip": null,
+                          "minLength": null,
+                          "maxLength": null,
+                          "showWordLimit": false,
+                          "onCreated": "",
+                          "onMounted": "",
+                          "onValidate": ""
+                      },
+                      "id": "rich2editor40014"
+                  }
+              ],
+              "formConfig": {
+                  "modelName": "formData",
+                  "refName": "vForm",
+                  "rulesName": "rules",
+                  "labelWidth": 80,
+                  "labelPosition": "left",
+                  "size": "",
+                  "labelAlign": "label-left-align",
+                  "cssCode": "",
+                  "customClass": "",
+                  "functions": "",
+                  "layoutType": "PC",
+                  "onFormCreated": "",
+                  "onFormMounted": "",
+                  "onFormDataChange": ""
+              }
+          };*/
 
             // this.formJson=data;
         },
         methods: {
-            fastImportJson(){
-                //快速导入
-                console.log(this.$refs.vFormRef.setFormJson(dataJson))
+            fastImportJson() {
+              //快速导入
+              console.log(this.$refs.vFormRef.setFormJson(dataJson))
+
+              //测试赋值数据
+
+              this.formData.input53759 = "hello world";
+              this.formData.select67535 = "[1,2]";
+              this.$refs.vFormRef.setFormData(this.formData)
 
 
-                //测试新增一个组件
+              //测试新增一个组件
 
 
             },

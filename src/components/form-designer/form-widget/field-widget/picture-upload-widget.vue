@@ -4,15 +4,17 @@
                      :sub-form-row-index="subFormRowIndex" :sub-form-col-index="subFormColIndex" :sub-form-row-id="subFormRowId">
     <!-- el-upload增加:name="field.options.name"后，会导致又拍云上传失败！故删除之！！ -->
     <el-upload ref="fieldEditor" :disabled="field.options.disabled"
-               :action="field.options.uploadURL" :headers="uploadHeaders" :data="uploadData"
+               :action="customUploadServer()" :headers="uploadHeaders" :data="uploadData"
                :with-credentials="field.options.withCredentials"
-               :multiple="field.options.multipleSelect" :file-list="fileList" :show-file-list="field.options.showFileList"
+               :multiple="field.options.multipleSelect" :file-list="fileList"
+               :show-file-list="field.options.showFileList"
                list-type="picture-card" :class="{'hideUploadDiv': uploadBtnHidden}"
                :limit="field.options.limit" :on-exceed="handlePictureExceed" :on-preview="handlePicturePreview"
                :before-upload="beforePictureUpload"
                :on-success="handlePictureUpload" :on-error="handleUploadError" :on-remove="handlePictureRemove">
       <div slot="tip" class="el-upload__tip"
-           v-if="!!field.options.uploadTip">{{field.options.uploadTip}}</div>
+           v-if="!!field.options.uploadTip">{{ field.options.uploadTip }}
+      </div>
       <i class="el-icon-plus avatar-uploader-icon"></i>
     </el-upload>
 
@@ -114,9 +116,28 @@
     },
 
     methods: {
+      //new 自定义上传服务器
+      geUploadUrl() {
+        let geUrl = null;
+        if (this.field.options.uploadGe) {
+          let ctxPrefix = "";
+          try {
+            // noinspection JSUnresolvedVariable
+            ctxPrefix = ctx;
+            // eslint-disable-next-line no-empty
+          } catch (e) {
+          }
+          geUrl = ctxPrefix + "/common/upload";
+        }
+        return geUrl;
+      },
+      customUploadServer() {
+        let geUploadUrl=this.geUploadUrl();
+        return geUploadUrl ? geUploadUrl : this.field.options.uploadURL;
+      },
       handlePictureExceed() {
         let uploadLimit = this.field.options.limit
-        this.$message.warning( this.i18nt('render.hint.uploadExceed').replace('${uploadLimit}', uploadLimit) )
+        this.$message.warning(this.i18nt('render.hint.uploadExceed').replace('${uploadLimit}', uploadLimit))
       },
 
       handlePicturePreview(file) {

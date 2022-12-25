@@ -76,15 +76,27 @@ export default {
     },
 
     initFileList() { //初始化上传组件的已上传文件列表
+      //如果是多选或者是联级选择时
+      if ((this.field.type === 'checkbox')||(this.field.type === 'select')||(this.field.type === 'cascader')||(this.field.type === 'cascader-area')) {
+        if (typeof (this.fieldModel)==="string" && !!this.fieldModel && this.fieldModel!=="" && this.fieldModel.indexOf("[")!==-1) {
+          this.fieldModel = JSON.parse(this.fieldModel||"[]");
+        }
+      }
+
       if ( ((this.field.type !== 'picture-upload') && (this.field.type !== 'file-upload')) || (this.designState === true) ) {
-        return
+        return;
       }
 
       if (!!this.fieldModel) {
+        //如果是字符串时，转数组
+        if (typeof (this.fieldModel)==="string" && !!this.fieldModel && this.fieldModel!=="" && this.fieldModel.indexOf("[")!==-1) {
+          this.fieldModel = JSON.parse(this.fieldModel||"[]");
+        }
+
         if (Array.isArray(this.fieldModel)) {
-          this.fileList = deepClone(this.fieldModel)
+          this.fileList = deepClone(this.fieldModel);
         } else {
-          this.fileList.splice(0, 0, deepClone(this.fieldModel))
+          this.fileList.splice(0, 0, deepClone(this.fieldModel));
         }
       }
     },

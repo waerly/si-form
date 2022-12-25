@@ -760,6 +760,7 @@ export const advancedFields = [
       customRuleHint: '',
       //-------------------
       uploadURL: '',
+      uploadGe: true,
       uploadTip: '',
       withCredentials: false,
       multipleSelect: false,
@@ -805,6 +806,7 @@ export const advancedFields = [
       customRuleHint: '',
       //-------------------
       uploadURL: '',
+      uploadGe: true,
       uploadTip: '',
       withCredentials: false,
       multipleSelect: false,
@@ -930,6 +932,48 @@ export const advancedFields = [
         {label: 'select 1', value: 1, children: [{label: 'child 1', value: 11}]},
         {label: 'select 2', value: 2},
         {label: 'select 3', value: 3},
+      ],
+      required: false,
+      requiredHint: '',
+      customRule: '',
+      customRuleHint: '',
+      //-------------------
+      customClass: '',  //自定义css类名
+      labelIconClass: null,
+      labelIconPosition: 'rear',
+      labelTooltip: null,
+      //-------------------
+      onCreated: '',
+      onMounted: '',
+      onChange: '',
+      onFocus: '',
+      onBlur: '',
+      onValidate: '',
+    },
+  },
+
+  {
+    type: 'cascader-area',
+    icon: 'cascader-field',
+    formItemFlag: true,
+    options: {
+      name: '',
+      label: '',
+      labelAlign: '',
+      defaultValue: '',
+      placeholder: '',
+      size: '',
+      labelWidth: null,
+      labelHidden: false,
+      columnWidth: '200px',
+      disabled: false,
+      hidden: false,
+      clearable: true,
+      filterable: false,
+      multiple: false,
+      checkStrictly: false,  //可选择任意一级选项，默认不开启
+      optionItems: [
+        {"id":"1","value":"110000","label":"北京市","parentValue":"","children":[{"id":"347","value":"110100","label":"北京市","parentValue":"110000","children":[{"id":"1","value":"110101","label":"东城区","parentValue":"110100","children":null},{"id":"2","value":"110102","label":"西城区","parentValue":"110100","children":null},{"id":"3","value":"110103","label":"崇文区","parentValue":"110100","children":null},{"id":"4","value":"110104","label":"宣武区","parentValue":"110100","children":null},{"id":"5","value":"110105","label":"朝阳区","parentValue":"110100","children":null},{"id":"6","value":"110106","label":"丰台区","parentValue":"110100","children":null},{"id":"7","value":"110107","label":"石景山区","parentValue":"110100","children":null},{"id":"8","value":"110108","label":"海淀区","parentValue":"110100","children":null},{"id":"9","value":"110109","label":"门头沟区","parentValue":"110100","children":null},{"id":"10","value":"110111","label":"房山区","parentValue":"110100","children":null},{"id":"11","value":"110112","label":"通州区","parentValue":"110100","children":null},{"id":"12","value":"110113","label":"顺义区","parentValue":"110100","children":null},{"id":"13","value":"110114","label":"昌平区","parentValue":"110100","children":null},{"id":"14","value":"110115","label":"大兴区","parentValue":"110100","children":null},{"id":"15","value":"110116","label":"怀柔区","parentValue":"110100","children":null},{"id":"16","value":"110117","label":"平谷区","parentValue":"110100","children":null}]}]},
       ],
       required: false,
       requiredHint: '',

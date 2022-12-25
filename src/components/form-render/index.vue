@@ -153,6 +153,13 @@
     mounted() {
       this.initLocale()
       this.handleOnMounted()
+
+      //测试赋值
+      // let data={
+      //   select55680:3,
+      //   "cascader101132": "[[2]]"
+      // };
+      // this.setFormData(data)
     },
     methods: {
       initFormObject(insertHtmlCodeFlag = true) {

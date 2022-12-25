@@ -5,7 +5,7 @@
     <!-- el-upload增加:name="field.options.name"后，会导致又拍云上传失败！故删除之！！ -->
     <el-upload ref="fieldEditor" :disabled="field.options.disabled"
                :style="styleVariables" class="dynamicPseudoAfter"
-               :action="field.options.uploadURL" :headers="uploadHeaders" :data="uploadData"
+               :action="customUploadServer()" :headers="uploadHeaders" :data="uploadData"
                :with-credentials="field.options.withCredentials"
                :multiple="field.options.multipleSelect" :file-list="fileList"
                :show-file-list="field.options.showFileList" :class="{'hideUploadDiv': uploadBtnHidden}"
@@ -119,6 +119,25 @@
     },
 
     methods: {
+      //new 自定义上传服务器
+      geUploadUrl() {
+        let geUrl = null;
+        if (this.field.options.uploadGe) {
+          let ctxPrefix = "";
+          try {
+            // noinspection JSUnresolvedVariable
+            ctxPrefix = ctx;
+            // eslint-disable-next-line no-empty
+          } catch (e) {
+          }
+          geUrl = ctxPrefix + "/common/upload";
+        }
+        return geUrl;
+      },
+      customUploadServer() {
+        let geUploadUrl=this.geUploadUrl();
+        return geUploadUrl ? geUploadUrl : this.field.options.uploadURL;
+      },
       handleFileExceed() {
         let uploadLimit = this.field.options.limit
         this.$message.warning( this.i18nt('render.hint.uploadExceed').replace('${uploadLimit}', uploadLimit) )

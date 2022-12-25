@@ -170,6 +170,7 @@
       this.loadCase()
 
       this.loadFieldListFromServer()
+
     },
     methods: {
       showLink(configName) {
