@@ -329,6 +329,7 @@ export const basicFields = [
       remote: false,
       automaticDropdown: false,  //自动下拉
       multiple: false,
+      suggestGe: false,
       multipleLimit: 0,
       optionItems: [
         {label: 'select 1', value: 1},

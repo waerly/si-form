@@ -223,6 +223,7 @@ export default {
       uploadSetting: '上传参数设置',
       uploadURL: '上传地址',
       uploadGe: '上传通用地址',
+      suggestGe: '建议搜索通用',
       uploadTip: '上传提示内容',
       withCredentials: '发送cookie凭证',
       multipleSelect: '文件可多选',

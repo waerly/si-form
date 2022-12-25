@@ -223,6 +223,7 @@ export default {
       uploadSetting: 'Upload Setting',
       uploadURL: 'Upload URL',
       uploadGe: 'Upload Ge URL',
+      suggestGe: 'Suggest Ge',
       uploadTip: 'Tip Content',
       withCredentials: 'Send Cookie',
       multipleSelect: 'File Multi-select',
