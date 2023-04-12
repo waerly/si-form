@@ -156,10 +156,33 @@
 
       //测试赋值
       // let data={
-      //   select55680:3,
-      //   "cascader101132": "[[2]]"
+      //   user70309:`[{"userId":"1442726325314994176","userName":"测试人员一","avatar":"http://localhost:8186/cloud/profile/avatar/2022/08/09/f657adb9326371a751463c87ad01d6b0.png"}
+      //   ,{"userId":"1460081990647742464","userName":"张三","avatar":""}]`,
       // };
-      // this.setFormData(data)
+      // let data22={
+      //     user70309:"[]"};
+      // //单选
+      let data1={
+        user70309:`{"userId":"1442726325314994176","userName":"测试人员一","avatar":"http://localhost:8186/cloud/profile/avatar/2022/08/09/f657adb9326371a751463c87ad01d6b0.png"}
+          `,
+      };
+      // let data2={
+      //   user70309:`
+      //   {"userId":"1460081990647742464","userName":"张三","avatar":""}`,
+      // };
+
+      //设置部门
+      let deptData={
+        dept28787:{"id":"1439069790743367680","name":"万达集团部门A-01","avatar":""}
+      }
+      let deptData2={
+        dept28787:{"id":"1439069595993444352","name":"万达集团部门A","avatar":""}
+      }
+      let deptDataArray={
+        dept28787:[{"id":"1439069595993444352","name":"万达集团部门A","avatar":""}]
+      }
+      // this.setFormData({user70309:""})
+      // this.setFormData(data1)
     },
     methods: {
       initFormObject(insertHtmlCodeFlag = true) {

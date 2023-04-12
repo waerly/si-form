@@ -34,6 +34,8 @@ export default {
       'data-table':     '数据表格',
 
       input:          '单行输入',
+      user:          '人员',
+      dept:          '部门',
       textarea:       '多行输入',
       number:         '计数器',
       radio:          '单选项',
@@ -223,6 +225,8 @@ export default {
       uploadSetting: '上传参数设置',
       uploadURL: '上传地址',
       uploadGe: '上传通用地址',
+      selectShowValue: '显示值',
+      selectProfile: '圆形图片',
       suggestGe: '建议搜索通用',
       uploadTip: '上传提示内容',
       withCredentials: '发送cookie凭证',

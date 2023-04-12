@@ -345,6 +345,80 @@ export function getDefaultFormConfig() {
 export function buildDefaultFormJson() {
   return {
     widgetList: [],
-    formConfig: deepClone( getDefaultFormConfig() )
+    formConfig: deepClone(getDefaultFormConfig())
+  }
+}
+
+//空格截取
+export function trim (value) {
+  if (value == null) {
+    return "";
+  }
+  return value.toString().replace(/(^\s*)|(\s*$)|\r|\n/g, "");
+}
+
+//判断是否为空
+export function isObjEmpty(obj) {
+  if (obj === null || obj === undefined) {
+    return true;
+  }
+  for (const i in obj) {
+    return false;
+  }
+  return true;
+}
+
+export function isEmpty(value) {
+  if (value == null || trim(value) === "") {
+    return true;
+  }
+  return false;
+}
+
+//通用版本支持判断任何的
+export function isEmptyForAny(obj) {//支持list，支持数组，支持对象
+  if (obj === null || obj === undefined) {
+    return true;
+  }
+  if (typeof obj === "string") {
+    return isEmpty(obj);
+  }
+  if (obj instanceof Array) {
+    return isListEmpty(obj);
+  }
+  if (typeof obj === "object") {
+    return isObjEmpty(obj);
+  }
+  return isObjEmpty(obj);
+}
+
+//数组不为空
+export function isListEmpty(value) {
+  if (value != null && value.length > 0) {
+    return false;
+  }
+  return true;
+}
+
+//数组管理
+export function isArray(obj) {
+  return obj instanceof Array;
+}
+//判断是否为对象
+export function isObj(obj) {
+  return Object.prototype.toString.call(obj) === '[object Object]'
+}
+
+//数组清除
+export function arrayClear(array) {
+  array.splice(0, array.length);
+}
+
+//数组添加
+export function arrayPushAll(array, newArray) {
+  if (isArray(newArray)) {
+    newArray.forEach(arr => {
+      array.push(arr);
+    });
   }
 }

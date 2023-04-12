@@ -2,6 +2,20 @@
   <form-item-wrapper :designer="designer" :field="field" :rules="rules" :design-state="designState"
                      :parent-widget="parentWidget" :parent-list="parentList" :index-of-parent-list="indexOfParentList"
                      :sub-form-row-index="subFormRowIndex" :sub-form-col-index="subFormColIndex" :sub-form-row-id="subFormRowId">
+
+<!--    height 40 ,36,32,28-->
+    <div v-show="false" :class="'el-input el-input--'+field.options.size">
+      <div v-for="item in field.options.optionItems" :key="item.value" >
+        <div v-if="fieldModel===item.value" :style="'overflow: auto;border-radius: 5px;padding: 0 4px;'+(item.bc?'background:'+item.bc:'')">
+          <span v-if="item.i" :style="'float: left;margin-right:4px;'+(item.c?'color:'+item.c:'')"><i :class="item.i"/></span>
+          <span v-if="item.img" :style="'float: left;margin-right:4px;'+(item.c?'color:'+item.c:'')">
+            <img alt="item.label" :style="'width: auto;max-width: 60px;height: 28px;'+(field.options.selectProfile?'border-radius: 50%;width:28px;':'')" :src="item.img"/>
+          </span>
+          <span :style="'float: left;'+(item.c?'color:'+item.c:'')">{{ item.label }}</span>
+        </div>
+      </div>
+    </div>
+
     <el-select ref="fieldEditor" v-model="fieldModel" class="full-width-input"
                :disabled="field.options.disabled"
                :size="field.options.size"
@@ -17,6 +31,14 @@
                @change="handleChangeEvent">
       <el-option v-for="item in field.options.optionItems" :key="item.value" :label="item.label"
                  :value="item.value" :disabled="item.disabled">
+        <div :style="'overflow: auto;border-radius: 5px;padding: 0 4px;'+(item.bc?'background:'+item.bc:'')">
+          <span v-if="item.i" :style="'float: left;margin-right:4px;'+(item.c?'color:'+item.c:'')"><i :class="item.i"/></span>
+          <span v-if="item.img" :style="'float: left;margin-right:4px;'+(item.c?'color:'+item.c:'')">
+            <img alt="item.label" :style="'width: auto;max-width: 60px;height: 34px;'+(field.options.selectProfile?'border-radius: 50%;width:34px;':'')" :src="item.img"/>
+          </span>
+          <span :style="'float: left;'+(item.c?'color:'+item.c:'')">{{ item.label }}</span>
+          <span v-if="field.options.selectShowValue" :style="'float: right; font-size: 12px;'+(item.c?'color:'+item.c:'')">{{ item.value }}</span>
+        </div>
       </el-option>
     </el-select>
   </form-item-wrapper>
@@ -67,6 +89,12 @@
         oldFieldValue: null, //field组件change之前的值
         fieldModel: null,
         rules: [],
+        sizeMap : {
+          large: 40,
+          medium: 36,
+          small: 32,
+          mini: 28
+        },
       }
     },
     computed: {
@@ -89,6 +117,7 @@
       this.buildFieldRules()
 
       this.handleOnCreated()
+
     },
 
     mounted() {

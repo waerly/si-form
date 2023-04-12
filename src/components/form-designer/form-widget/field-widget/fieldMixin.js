@@ -77,9 +77,13 @@ export default {
 
     initFileList() { //初始化上传组件的已上传文件列表
       //如果是多选或者是联级选择时
-      if ((this.field.type === 'checkbox')||(this.field.type === 'select')||(this.field.type === 'cascader')||(this.field.type === 'cascader-area')) {
+      if ((this.field.type === 'checkbox')||(this.field.type === 'select')||(this.field.type === 'user')||(this.field.type === 'dept')
+        ||(this.field.type === 'cascader')||(this.field.type === 'cascader-area')) {
         if (typeof (this.fieldModel)==="string" && !!this.fieldModel && this.fieldModel!=="" && this.fieldModel.indexOf("[")!==-1) {
           this.fieldModel = JSON.parse(this.fieldModel||"[]");
+        }
+        if (typeof (this.fieldModel)==="string" && !!this.fieldModel && this.fieldModel!==""&& this.fieldModel.indexOf("{")!==-1) {
+          this.fieldModel = JSON.parse(this.fieldModel || "{}");
         }
       }
 
@@ -620,6 +624,20 @@ export default {
     },
 
     //--------------------- 以上为组件支持外部调用的API方法 end ------------------//
+    getCtx(){
+      let ctxStr = "";
+      try {
+        // eslint-disable-next-line no-undef
+        ctxStr=ctx;
+      }catch (e) {
+        //测试
+        ctxStr = "http://localhost:8186/cloud/";
+      }
+      return ctxStr;
+    },
+
+    //--------------------- 以上为扩展通用工具和方法 end ------------------//
+
 
   }
 }

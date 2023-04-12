@@ -208,7 +208,6 @@
       },
 
       selectWidget(widget) {
-        console.log('id: ' + widget.id)
         this.designer.setSelected(widget)
       },
 

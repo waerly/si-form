@@ -34,6 +34,8 @@ export default {
       'data-table':     'DataTable',
 
       input:          'Input',
+      user:          'User',
+      dept:          'Dept',
       textarea:       'Textarea',
       number:         'InputNumber',
       radio:          'Radio',
@@ -223,6 +225,8 @@ export default {
       uploadSetting: 'Upload Setting',
       uploadURL: 'Upload URL',
       uploadGe: 'Upload Ge URL',
+      selectShowValue: 'Select Show Value',
+      selectProfile: 'Select Profile',
       suggestGe: 'Suggest Ge',
       uploadTip: 'Tip Content',
       withCredentials: 'Send Cookie',

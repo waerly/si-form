@@ -10,7 +10,7 @@
 <body>
 
 <div id="app">
-    <v-form-designer ref="VFDesigner"></v-form-designer>
+    <v-form-designer ref="VFDesigner" ></v-form-designer>
 
     <el-button type="primary" @click="testInsertComp">测试新增组件</el-button>
 </div>
@@ -28,12 +28,22 @@
 <script src="/dist/lib/VFormDesigner.umd.min.js?t=20210730"></script> <!-- 根据Web服务器或CDN路径修改 -->
 <script>
     new Vue({
-        el: '#app',
-        methods:{
-            testInsertComp(){
-                console.log("测试新增组件",this.$refs.VFDesigner)
-            }
+      el: '#app',
+      created() {
+        this.$nextTick(()=>{
+          console.log(this.$refs.VFDesigner)
+        })
+
+      },
+      methods: {
+        testInsertComp() {
+          console.log("测试新增组件", this.$refs.VFDesigner)
+        },
+        onChange2() {
+          console.log("ok", this)
         }
+
+      }
     });
 </script>
 </body>

@@ -12,6 +12,10 @@
       <el-input v-model="dOption.i" size="mini" style="width: 200px">
       </el-input>
     </el-form-item>
+    <el-form-item label="图片">
+      <el-input v-model="dOption.img" size="mini" style="width: 200px">
+      </el-input>
+    </el-form-item>
     <el-form-item label="颜色">
       <div class="si-el-form-item-inline">
         <el-color-picker v-model="dOption.c" style="margin-right: 6px;"></el-color-picker>
