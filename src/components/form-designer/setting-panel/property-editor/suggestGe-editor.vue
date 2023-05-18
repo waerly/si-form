@@ -27,12 +27,12 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.optionModel.onFocus = "gev3.utils.focusQuerySearchForWc(this)";
+            this.optionModel.onFocus = "gev3.utils.focusQuerySearchForWc(this);gev3.utils.querySearchAsyncForWc('',this);";
             this.optionModel.onRemoteQuery = "gev3.utils.querySearchAsyncForWc(keyword,this)";
           }).catch(() => {
           });
         } else {
-          this.optionModel.onFocus = "gev3.utils.focusQuerySearchForWc(this)";
+          this.optionModel.onFocus = "gev3.utils.focusQuerySearchForWc(this);gev3.utils.querySearchAsyncForWc('',this);";
           this.optionModel.onRemoteQuery = "gev3.utils.querySearchAsyncForWc(keyword,this)";
         }
       }

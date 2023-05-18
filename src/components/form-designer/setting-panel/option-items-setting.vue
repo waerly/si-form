@@ -26,7 +26,11 @@
         <li v-for="(option, idx) in optionModel.optionItems" :key="idx">
           <el-checkbox :label="option.value">
             <el-input v-model="option.value" size="mini" style="width: 80px"></el-input>
-            <el-input v-model="option.label" size="mini" style="width: 120px"></el-input>
+            <el-input v-model="option.label" size="mini" style="width: 120px">
+              <template #prefix>
+                <i @click="handlerIconClick(option)" :style="{padding:'6px 4px','border-radius':'3px', 'color':option.c,'background-color':option.bc}" :class="option.i?option.i:'el-icon-edit'">&nbsp;</i>
+              </template>
+            </el-input>
             <!--            <el-input v-model="option.i" size="mini" style="width: 40px"></el-input>-->
             <i class="iconfont icon-drag drag-option"></i>
             <el-button circle plain size="mini" type="danger" @click="deleteOption(option, idx)"

@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <el-select ref="fieldEditor" v-model="fieldModel" class="full-width-input"
+    <el-select ref="fieldEditor" v-model="fieldModel" :class="'full-width-input'"
                :disabled="field.options.disabled"
                :size="field.options.size"
                :clearable="field.options.clearable"
@@ -29,6 +29,19 @@
                :remote="field.options.remote" :remote-method="remoteQuery"
                @focus="handleFocusCustomEvent" @blur="handleBlurCustomEvent"
                @change="handleChangeEvent">
+      <template #prefix v-if="isUseCustom(getItem())&&!field.options.multiple">
+        <div class="custom-selection"  >
+          <div :style="'overflow: auto;border-radius: 5px;padding: 0 4px;'+(currentItem.bc?'background:'+currentItem.bc:'')">
+            <span class="custom-selection-icon" v-if="currentItem.i" :style="'float: left;margin-right:4px;'+(currentItem.c?'color:'+currentItem.c:'')"><i :class="currentItem.i"/></span>
+            <span class="custom-selection-img" v-if="currentItem.img" :style="'float: left;margin-right:4px;'+(currentItem.c?'color:'+currentItem.c:'')">
+              <img alt="currentItem.label" :style="'width: auto;max-width: 60px;height: 34px;'+(field.options.selectProfile?'border-radius: 50%;width:34px;':'')" :src="currentItem.img"/>
+            </span>
+            <span class="custom-selection-title"  :style="'float: left;'+(currentItem.c?'color:'+currentItem.c:'')">{{ currentItem.label }}</span>
+            <span class="custom-selection-value" v-if="field.options.selectShowValue" :style="'float: right; font-size: 12px;'+(currentItem.c?'color:'+currentItem.c:'')">{{ currentItem.value }}</span>
+          </div>
+        </div>
+
+      </template>
       <el-option v-for="item in field.options.optionItems" :key="item.value" :label="item.label"
                  :value="item.value" :disabled="item.disabled">
         <div :style="'overflow: auto;border-radius: 5px;padding: 0 4px;'+(item.bc?'background:'+item.bc:'')">
@@ -49,6 +62,7 @@
   import emitter from '@/utils/emitter'
   import i18n, {translate} from "@/utils/i18n";
   import fieldMixin from "@/components/form-designer/form-widget/field-widget/fieldMixin";
+  import {isEmptyStr} from "@/utils/util";
 
   export default {
     name: "select-widget",
@@ -95,6 +109,7 @@
           small: 32,
           mini: 28
         },
+        currentItem:{},
       }
     },
     computed: {
@@ -129,7 +144,18 @@
     },
 
     methods: {
-
+      //判断当前是否实用颜色
+      isUseCustom(item){
+        return item && (!isEmptyStr(item.c) || !isEmptyStr(item.bc) || !isEmptyStr(item.i) || !isEmptyStr(item.img));
+      },
+      getItem(){
+        if (this.currentItem && Object.keys(this.currentItem).length > 0 && this.currentItem.value == this.fieldModel) {
+          return this.currentItem;
+        }
+        let currentItem=this.field.options.optionItems.find(item=>item.value==this.fieldModel);
+        this.currentItem = currentItem;
+        return currentItem;
+      }
     }
   }
 </script>
@@ -139,6 +165,27 @@
 
   .full-width-input {
     width: 100% !important;
+  }
+  .custom-selection {
+    padding-left: 2px;
+    text-align: left;
+    display: inline-block;
+    overflow: hidden;
+    height: calc(100% - 4px);
+    background: white;
+    margin-top: 3px;
+  }
+  .el-input__prefix .custom-selection .custom-selection-icon,
+  .el-input__prefix .custom-selection .custom-selection-title,
+  .el-input__prefix .custom-selection .custom-selection-value
+  {
+    line-height: 30px;
+  }
+  .el-input__prefix .custom-selection .custom-selection-img{
+    line-height: 30px;
+  }
+  .el-input__inner{
+
   }
 
 </style>
