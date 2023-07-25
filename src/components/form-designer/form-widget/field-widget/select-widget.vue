@@ -167,13 +167,14 @@
     width: 100% !important;
   }
   .custom-selection {
-    padding-left: 2px;
     text-align: left;
     display: inline-block;
     overflow: hidden;
     height: calc(100% - 4px);
     background: white;
     margin-top: 3px;
+    padding-left: 9px;
+    padding-right: 9px;
   }
   .el-input__prefix .custom-selection .custom-selection-icon,
   .el-input__prefix .custom-selection .custom-selection-title,
@@ -184,6 +185,16 @@
   .el-input__prefix .custom-selection .custom-selection-img{
     line-height: 30px;
   }
+  .el-select--mini .el-input__prefix .custom-selection .custom-selection-icon,
+  .el-select--mini .el-input__prefix .custom-selection .custom-selection-title,
+  .el-select--mini .el-input__prefix .custom-selection .custom-selection-value
+  {
+    line-height: 22px;
+  }
+  .el-select--mini .el-input__prefix .custom-selection .custom-selection-img{
+    line-height: 22px;
+  }
+
   .el-input__inner{
 
   }

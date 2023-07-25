@@ -210,9 +210,11 @@ export default {
         if (isObj(this.fieldModel)) {
           this.fieldModel = [this.fieldModel];
         }
-        this.fieldModel.forEach(f => {
-          this.defaultCheckedData.push(f.id);
-        })
+        if (isArray(this.fieldModel)) {
+          this.fieldModel.forEach(f => {
+            this.defaultCheckedData.push(f.id);
+          })
+        }
       } else {
         //尝试使用兼容性方式
         if (isArray(this.fieldModel)) {
@@ -312,6 +314,7 @@ export default {
         this.defaultCheckedData.push(d.id);
       })
       this.checkedDataToFieldMode(data);
+      this.handleChangeEvent(this.fieldModel);
     },
     handlerSelectUserClick() {
       if (this.field.options.disabled) {

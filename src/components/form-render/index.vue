@@ -305,6 +305,7 @@
         this.$on('fieldChange', (fieldName, newValue, oldValue, subFormName, subFormRowIndex) => {
           this.handleFieldDataChange(fieldName, newValue, oldValue, subFormName, subFormRowIndex)
           this.$emit('formChange', fieldName, newValue, oldValue, this.formDataModel, subFormName, subFormRowIndex)
+          this.$emit('form-change', fieldName, newValue, oldValue, this.formDataModel, subFormName, subFormRowIndex)
         })
       },
 
