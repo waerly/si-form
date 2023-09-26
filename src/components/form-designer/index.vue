@@ -45,7 +45,7 @@
         </el-header>
         <el-main class="form-widget-main">
           <el-scrollbar class="container-scroll-bar" :style="{height: scrollerHeight}">
-            <v-form-widget :designer="designer" :form-config="designer.formConfig" ref="formRef">
+            <v-form-widget :designer="designer" :si-ge-fun-req="siGeFunReq" :form-config="designer.formConfig" ref="formRef">
             </v-form-widget>
           </el-scrollbar>
         </el-main>
@@ -124,6 +124,14 @@
           }
         }
       },
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
+
 
     },
     data() {
@@ -156,6 +164,7 @@
     created() {
       this.vsCodeFlag = getQueryParam('vscode') == 1
       this.caseName = getQueryParam('case')
+      console.log("siGe....",this.siGeFunReq)
     },
     mounted() {
       this.initLocale()

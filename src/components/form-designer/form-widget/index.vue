@@ -15,7 +15,7 @@
                                 :index-of-parent-list="index" :parent-widget="null"></component>
             </template>
             <template v-else>
-              <component :is="getWidgetName(widget)" :field="widget" :designer="designer" :key="widget.id" :parent-list="designer.widgetList"
+              <component :is="getWidgetName(widget)" :si-ge-fun-req="siGeFunReq" :field="widget" :designer="designer" :key="widget.id" :parent-list="designer.widgetList"
                             :index-of-parent-list="index" :parent-widget="null" :design-state="true"></component>
             </template>
           </template>
@@ -48,6 +48,13 @@
       optionData: { //prop传入的选项数据
         type: Object,
         default: () => ({})
+      },
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
       },
     },
     provide() {
@@ -114,6 +121,7 @@
       // console.log(this.designer.widgetList)
       this.designer.initDesigner( !!this.getDesignerConfig().resetFormJson );
       this.designer.loadPresetCssCode( this.getDesignerConfig().presetCssCode )
+      console.log("siGeFunReq,form-widget---->",this.siGeFunReq)
     },
     mounted() {
       this.disableFirefoxDefaultDrop()  /* 禁用Firefox默认拖拽搜索功能!! */

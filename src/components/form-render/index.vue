@@ -24,7 +24,7 @@
         </component>
       </template>
       <template v-else>
-        <component :is="getWidgetName(widget)" :field="widget" :form-model="formDataModel" :designer="null" :key="widget.id" :parent-list="widgetList"
+        <component :is="getWidgetName(widget)" :field="widget" :si-ge-fun-req="siGeFunReq" :form-model="formDataModel" :designer="null" :key="widget.id" :parent-list="widgetList"
                       :index-of-parent-list="index" :parent-widget="null">
           <!-- 递归传递插槽！！！ -->
           <template v-for="slot in Object.keys($scopedSlots)" v-slot:[slot]="scope">
@@ -75,7 +75,14 @@
       previewState: { //是否表单预览状态
         type: Boolean,
         default: false
-      }
+      },
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
     },
     provide() {
       return {

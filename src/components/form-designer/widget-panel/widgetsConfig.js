@@ -738,6 +738,50 @@ export const basicFields = [
       onMounted: '',
     },
   },
+  //设置
+  {
+    type: 'relation-fun',
+    icon: 'relation-fun',
+    formItemFlag: true,
+    options: {
+      name: '',
+      label: '',
+      labelAlign: '',
+      defaultValue: null,
+      columnWidth: '200px',
+      labelWidth: null,
+      labelHidden: false,
+      disabled: false,
+      hidden: false,
+      required: false,
+      requiredHint: '',
+      validation: '',
+      validationHint: '',
+      //-------------------
+      customClass: '',  //自定义css类名
+      labelIconClass: null,
+      labelIconPosition: 'rear',
+      labelTooltip: null,
+      //-------------------
+      rfName: [
+        {label: 'select 1', value: "1"},
+        {label: 'select 2', value: "2"},
+        {label: 'select 3', value: "3"},
+      ],
+      rfSubFun: false,
+      rfCustomCol: false,
+      rfShowCol: [],//对应选择的列
+      rfShowRow: '',
+      rfCriteria: '',
+
+      //-------------------
+      onCreated: '',
+      onMounted: '',
+      onChange: '',
+      onValidate: '',
+    },
+
+  },
 
   //
 
@@ -1000,7 +1044,7 @@ export const advancedFields = [
   // 用户
   {
     type: 'user',
-    icon: 'cascader-field',
+    icon: 'user',
     formItemFlag: true,
     options: {
       name: '',
@@ -1046,7 +1090,7 @@ export const advancedFields = [
   },
   {
     type: 'dept',
-    icon: 'cascader-field',
+    icon: 'dept',
     formItemFlag: true,
     options: {
       name: '',

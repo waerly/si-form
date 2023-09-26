@@ -53,6 +53,7 @@ export default {
       'html-text':    'HTML',
       button:         'Button',
       divider:        'Divider',
+      'relation-fun': 'Relation Function',
 
       'picture-upload': 'Picture',
       'file-upload':    'File',
@@ -228,6 +229,12 @@ export default {
       selectShowValue: 'Select Show Value',
       selectProfile: 'Select Profile',
       suggestGe: 'Suggest Ge',
+      rfName: 'relation function',//
+      rfCustomCol: 'custom column',//
+      rfSubFun: 'subfunction',//如果是子功能时，可以不用维护关联条件
+      rfShowCol: 'show col',
+      rfShowRow: 'show row',
+      rfCriteria: 'criteria',
       uploadTip: 'Tip Content',
       withCredentials: 'Send Cookie',
       multipleSelect: 'File Multi-select',
@@ -314,6 +321,8 @@ export default {
       leftAlign: 'Left',
       centerAlign: 'Center',
       rightAlign: 'Right',
+      rfRowOne: 'one',
+      rfRowMulti: 'multi',
       formCss: 'Form CSS',
       addCss: 'Edit',
       customClass: 'Custom Class',

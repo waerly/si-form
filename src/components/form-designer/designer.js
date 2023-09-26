@@ -16,7 +16,6 @@ export function createDesigner(vueInstance) {
   return {
     widgetList: [],
     formConfig: {cssCode: ''},
-
     selectedId: null,
     selectedWidget: null,
     selectedWidgetName: null,  //选中组件名称（唯一）

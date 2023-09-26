@@ -53,6 +53,7 @@ export default {
       'html-text':    'HTML',
       button:         '按钮',
       divider:        '分隔线',
+      'relation-fun': '关联功能',
 
       'picture-upload': '图片',
       'file-upload':    '文件',
@@ -228,6 +229,12 @@ export default {
       selectShowValue: '显示值',
       selectProfile: '圆形图片',
       suggestGe: '建议搜索通用',
+      rfName: '关联功能',//
+      rfCustomCol: '自定义列',//
+      rfSubFun: '子功能',//如果是子功能时，可以不用维护关联条件
+      rfShowCol: '显示列',
+      rfShowRow: '显示条数',
+      rfCriteria: '过滤条件',
       uploadTip: '上传提示内容',
       withCredentials: '发送cookie凭证',
       multipleSelect: '文件可多选',
@@ -314,6 +321,8 @@ export default {
       leftAlign: '居左',
       centerAlign: '居中',
       rightAlign: '居右',
+      rfRowOne: '单条',
+      rfRowMulti: '多行',
       formCss: '表单全局CSS',
       addCss: '编写CSS',
       customClass: '自定义CSS样式',
