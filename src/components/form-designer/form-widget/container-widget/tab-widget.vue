@@ -9,7 +9,7 @@
 -->
 
 <template>
-  <container-wrapper :designer="designer" :widget="widget" :parent-widget="parentWidget" :parent-list="parentList"
+  <container-wrapper :designer="designer" :si-ge-fun-req="siGeFunReq" :widget="widget" :parent-widget="parentWidget" :parent-list="parentList"
                      :index-of-parent-list="indexOfParentList">
 
     <div :key="widget.id" class="tab-container"
@@ -25,11 +25,11 @@
             <transition-group name="fade" tag="div" class="form-widget-list">
               <template v-for="(subWidget, swIdx) in tab.widgetList">
                 <template v-if="'container' === subWidget.category">
-                  <component :is="subWidget.type + '-widget'" :widget="subWidget" :designer="designer" :key="subWidget.id" :parent-list="tab.widgetList"
+                  <component :is="subWidget.type + '-widget'" :widget="subWidget" :designer="designer" :si-ge-fun-req="siGeFunReq" :key="subWidget.id" :parent-list="tab.widgetList"
                                     :index-of-parent-list="swIdx" :parent-widget="widget"></component>
                 </template>
                 <template v-else>
-                  <component :is="subWidget.type + '-widget'" :field="subWidget" :designer="designer" :key="subWidget.id" :parent-list="tab.widgetList"
+                  <component :is="subWidget.type + '-widget'" :field="subWidget" :designer="designer" :si-ge-fun-req="siGeFunReq" :key="subWidget.id" :parent-list="tab.widgetList"
                                 :index-of-parent-list="swIdx" :parent-widget="widget" :design-state="true"></component>
                 </template>
               </template>
@@ -68,6 +68,13 @@
       parentList: Array,
       indexOfParentList: Number,
       designer: Object,
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
     },
     data() {
       return {
@@ -89,6 +96,7 @@
       //
     },
     created() {
+      console.log("tab-widget,",this.siGeFunReq)
       this.initRefList()
     },
     mounted() {

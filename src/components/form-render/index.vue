@@ -15,7 +15,7 @@
            @submit.native.prevent>
     <template v-for="(widget, index) in widgetList">
       <template v-if="'container' === widget.category">
-        <component :is="getContainerWidgetName(widget)" :widget="widget" :key="widget.id" :parent-list="widgetList"
+        <component :is="getContainerWidgetName(widget)" :si-ge-fun-req="siGeFunReqData" :widget="widget" :key="widget.id" :parent-list="widgetList"
                         :index-of-parent-list="index" :parent-widget="null">
           <!-- 递归传递插槽！！！ -->
           <template v-for="slot in Object.keys($scopedSlots)" v-slot:[slot]="scope">
@@ -24,7 +24,7 @@
         </component>
       </template>
       <template v-else>
-        <component :is="getWidgetName(widget)" :field="widget" :si-ge-fun-req="siGeFunReq" :form-model="formDataModel" :designer="null" :key="widget.id" :parent-list="widgetList"
+        <component :is="getWidgetName(widget)" :field="widget" :si-ge-fun-req="siGeFunReqData" :form-model="formDataModel" :designer="null" :key="widget.id" :parent-list="widgetList"
                       :index-of-parent-list="index" :parent-widget="null">
           <!-- 递归传递插槽！！！ -->
           <template v-for="slot in Object.keys($scopedSlots)" v-slot:[slot]="scope">
@@ -110,6 +110,9 @@
         formId: null,  //表单唯一Id，用于区分页面上的多个v-form-render组件！！
 
         externalComponents:  {},  //外部组件实例集合
+
+        siGeFunReqData: this.siGeFunReq,
+
       }
     },
     computed: {
@@ -154,6 +157,7 @@
       //
     },
     created() {
+      console.log("form-render index",this.siGeFunReq)
       this.buildFormModel(!this.formJsonObj ? null : this.formJsonObj.widgetList)
       this.initFormObject()
     },
@@ -725,6 +729,12 @@
       getEC(componentName) {
         return this.externalComponents[componentName]
       },
+
+      //设置geFunReq
+      setSiGeFunReq(siGeFunReq){
+        this.siGeFunReqData = siGeFunReq;
+        console.log("重新赋值,", siGeFunReq);
+      }
 
       //--------------------- 以上为组件支持外部调用的API方法 end ------------------//
 

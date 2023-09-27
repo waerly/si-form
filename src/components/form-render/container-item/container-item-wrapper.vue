@@ -22,6 +22,13 @@
         type: Object,
         required: true
       },
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
     },
     computed: {
       customClass() {

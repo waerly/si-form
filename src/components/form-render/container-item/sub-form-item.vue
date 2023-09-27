@@ -82,6 +82,13 @@
     },
     props: {
       widget: Object,
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
     },
     inject: ['refList', 'sfRefList', 'globalModel'],
     data() {

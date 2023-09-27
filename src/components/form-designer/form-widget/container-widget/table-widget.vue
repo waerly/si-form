@@ -9,7 +9,7 @@
 -->
 
 <template>
-  <container-wrapper :designer="designer" :widget="widget" :parent-widget="parentWidget" :parent-list="parentList"
+  <container-wrapper :designer="designer" :si-ge-fun-req="siGeFunReq" :widget="widget" :parent-widget="parentWidget" :parent-list="parentList"
                      :index-of-parent-list="indexOfParentList">
 
     <div :key="widget.id" class="table-container"
@@ -55,6 +55,13 @@
       parentList: Array,
       indexOfParentList: Number,
       designer: Object,
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
     },
     computed: {
       selected() {

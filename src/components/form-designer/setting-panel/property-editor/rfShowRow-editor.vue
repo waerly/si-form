@@ -1,5 +1,16 @@
 <template>
-  <el-form-item :label="i18nt('designer.setting.rfShowRow')" >
+  <el-form-item label=" " >
+    <span slot="label">
+        {{i18nt('designer.setting.rfShowRow')}}
+        <el-tooltip
+          effect="dark"
+          content="暂不支持！"
+          placement="right"
+        >
+          <i class="el-icon-info" ></i>
+        </el-tooltip>
+    </span>
+
     <el-radio-group v-model="optionModel.rfShowRow" class="radio-group-custom">
       <el-radio-button label="one">
         {{i18nt('designer.setting.rfRowOne')}}</el-radio-button>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-  <el-divider class="custom-divider-margin-top">{{i18nt('designer.setting.rfName')}}</el-divider>
+  <div v-if="optionModel.rfSubFun">
+
   <el-form-item :label="i18nt('designer.setting.rfName')">
     <el-select v-model="optionModel.rfName" filterable clearable>
       <el-option v-for="item in subFunItems" :key="item.value" :label="item.label"

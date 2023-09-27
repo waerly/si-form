@@ -1,18 +1,16 @@
 <!--关联功能-->
+<!--自定义关联功能css style 属性-->
 <template>
-  <div>
-    <el-divider class="custom-divider-margin-top">{{i18nt('designer.setting.rfName')}}</el-divider>
-    <el-form-item :label="i18nt('designer.setting.rfSubFun')">
-      <el-switch @change="handlerChange" v-model="optionModel.rfSubFun"></el-switch>
-    </el-form-item>
-  </div>
+  <el-form-item :label="i18nt('designer.setting.rfCssStyle')">
+    <el-input @change="handlerChange" v-model="optionModel.rfCssStyle"></el-input>
+  </el-form-item>
 </template>
 
 <script>
 import i18n from "@/utils/i18n"
 
 export default {
-  name: "rfSubFun-editor",
+  name: "rfCssStyle-editor",
   mixins: [i18n],
   props: {
     designer: Object,
@@ -25,7 +23,10 @@ export default {
     handlerChange(val) {
       // eslint-disable-next-line no-prototype-builtins
 
-    }
+    },
+    handlerSetCriteria() {
+
+    },
   }
 }
 </script>

@@ -763,16 +763,21 @@ export const basicFields = [
       labelIconPosition: 'rear',
       labelTooltip: null,
       //-------------------
+      rfSubFun: false,
       rfName: [
         {label: 'select 1', value: "1"},
         {label: 'select 2', value: "2"},
         {label: 'select 3', value: "3"},
       ],
-      rfSubFun: false,
+      rfCustomFunCode: '',
       rfCustomCol: false,
       rfShowCol: [],//对应选择的列
       rfShowRow: '',
       rfCriteria: '',
+      rfHeight: '',
+      rfOverflowX: '',
+      rfOverflowY: '',
+      rfCssStyle: '',
 
       //-------------------
       onCreated: '',

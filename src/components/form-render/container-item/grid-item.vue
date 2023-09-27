@@ -1,5 +1,5 @@
 <template>
-  <container-item-wrapper :widget="widget">
+  <container-item-wrapper :widget="widget" :si-ge-fun-req="siGeFunReq">
 
     <el-row :key="widget.id" :gutter="widget.options.gutter" class="grid-container"
             :class="[customClass]"
@@ -37,6 +37,13 @@
     },
     props: {
       widget: Object,
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
     },
     inject: ['refList', 'sfRefList', 'globalModel'],
     created() {

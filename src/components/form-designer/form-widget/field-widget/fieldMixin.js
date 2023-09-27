@@ -633,6 +633,7 @@ export default {
         //测试
         ctxStr = "http://localhost:8186/cloud/";
       }
+      console.log("cxtStr",ctxStr)
       return ctxStr;
     },
 

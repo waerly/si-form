@@ -1,5 +1,5 @@
 <template>
-  <container-item-wrapper :widget="widget">
+  <container-item-wrapper :widget="widget" :si-ge-fun-req="siGeFunReq">
 
     <div :key="widget.id" class="table-container"
          v-show="!widget.options.hidden">
@@ -41,6 +41,13 @@
     },
     props: {
       widget: Object,
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
     },
     inject: ['refList', 'sfRefList', 'globalModel'],
     created() {

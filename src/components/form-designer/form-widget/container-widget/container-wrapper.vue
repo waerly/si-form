@@ -49,6 +49,13 @@
       parentList: Array,
       indexOfParentList: Number,
       designer: Object,
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
     },
     computed: {
       customClass() {

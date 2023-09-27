@@ -49,6 +49,13 @@
       parentWidget: Object,
       parentList: Array,
       indexOfParentList: Number,
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
 
       colHeight: {
         type: String,

@@ -4,17 +4,29 @@
 <!--    <el-divider class="custom-divider-margin-top">{{i18nt('designer.setting.rfShowCol')}}</el-divider>-->
 
 
-    <el-form-item :label="i18nt('designer.setting.rfShowCol')">
+    <el-form-item label=" ">
+      <span slot="label">
+        {{i18nt('designer.setting.rfShowCol')}}
+
+        <el-tooltip
+          effect="dark"
+          content="刷新列表"
+          placement="right"
+        >
+          <i class="el-icon-refresh" @click="onloadFunCol"></i>
+        </el-tooltip>
+      </span>
       <el-select value="" clearable multiple filterable @change="handlerChangeShowCol">
         <el-option v-for="item in optionItems" :key="item.value" :label="item.label"
                    :value="item.value">
           <template #default><span :class="checkOptionItemsMap.hasOwnProperty(item.value)?'item-option-selected':''">{{item.label}}</span></template>
+
         </el-option>
       </el-select>
     </el-form-item>
 
     <div class="option-items-pane">
-      <el-radio-group v-if="(selectedWidget.type === 'relation-fun')"
+      <el-radio-group v-if="(selectedWidgetData.type === 'relation-fun')"
                        @change="emitDefaultValueChange">
         <draggable tag="ul" :list="checkOptionItems"
                    v-bind="{group:'optionsGroup', ghostClass: 'ghost', handle: '.drag-option'}">
@@ -40,12 +52,16 @@
 
 <script>
   import i18n from "@/utils/i18n"
+  import emitter from '@/utils/emitter'
   import OptionItemsSetting from "@/components/form-designer/setting-panel/option-items-setting"
   import Draggable from 'vuedraggable'
+  import fieldMixin from "@/components/form-designer/form-widget/field-widget/fieldMixin";
+  import axios from "axios";
+  import fa from "element-ui/src/locale/lang/fa";
 
   export default {
     name: "rfShowCol-editor",
-    mixins: [i18n],
+    mixins: [emitter,i18n,fieldMixin],
     props: {
       designer: Object,
       selectedWidget: Object,
@@ -55,6 +71,7 @@
       Draggable,
       OptionItemsSetting,
     },
+    inject: ['refList', 'formConfig', 'globalOptionData', 'globalModel'],
     data() {
       return {
         siGeFunReq:{},
@@ -62,14 +79,76 @@
         optionItems:[],
         checkOptionItems:[],
         checkOptionItemsMap:{},
+        selectedWidgetData: this.selectedWidget,
+        optionModelData: this.optionModel,
       }
     },
     created() {
       this.siGeFunReq = this.designer.vueInstance.siGeFunReq;
       this.siGeFun = this.designer.vueInstance.siGeFunReq.siGeFun;
-      this.parseSetReqToOptionItems(this.siGeFun);
+      this.onloadOptionsValue();
+      // this.parseSetReqToOptionItems(this.siGeFun);
+      this.onloadFunCol(true);
+      //监听字段组件选中事件
+      this.designer.handleEvent('field-selected', (parentWidget) => {
+        if (this.designer.selectedWidget.type === 'relation-fun') {
+          this.selectedWidgetData = this.designer.selectedWidget;
+          // console.log("this,",this.selectedWidgetData)
+          this.optionModelData = this.designer.selectedWidget.options;
+          this.onloadOptionsValue();
+        }
+      })
+    },
+    destroyed() {
+      //存在监听未撤销的问题
+      // this.designer.removeEvent("field-selected")
     },
     methods: {
+
+      //加载功能列
+      onloadFunCol(firstLoad = false) {
+        let self = this;
+        let funCode = this.optionModelData.rfName;
+        if (this.optionModelData.rfCustomFunCode != null && this.optionModelData.rfCustomFunCode !== "") {
+          funCode = this.optionModelData.rfCustomFunCode;
+        }
+        if (!funCode || funCode === "") {
+          this.$message.warning("请先选择功能或者输入功能编码!")
+          return;
+        }
+        axios.post(`${this.getCtx()}core/find_ge_fun_info/${funCode}`).then(res => {
+          if (res.status === 200 && res.data) {
+            let resData = res.data;
+            if (!resData.data) {
+              this.$message.warning("没有找到对应功能，请核实！")
+              return
+            }
+            if (resData.code === 0) {
+              let data = resData.data;
+              self.parseSetReqToOptionItems(data.siGeFun)
+              if (!firstLoad) {
+                this.checkOptionItems.splice(0, this.checkOptionItems.length);
+              }
+            }
+          } else {
+            this.$message.warning("异常:", res.status, res.statusText)
+          }
+        }).catch(res => {
+        });
+      },
+      refreshHandler(){
+        console.log("刷新")
+      },
+      //解析组件中的值
+      onloadOptionsValue(){
+        this.checkOptionItems.splice(0, this.checkOptionItems.length);
+        if (this.optionModelData.rfShowCol && this.optionModelData.rfShowCol.length > 0) {
+          this.optionModelData.rfShowCol.forEach(col=>{
+            this.checkOptionItems.push(col);
+          })
+        }
+      },
+
       //解析req中的列，并将其转为 value 和 label的格式
       parseSetReqToOptionItems(siGeFun){
         let columns=siGeFun.columns;
@@ -87,6 +166,8 @@
         this.checkOptionItemsToMap();
       },
       emitDefaultValueChange() {
+        //选择默认改为刷新
+        //选择默认的时候
         // if (!!this.designer && !!this.designer.formWidget) {
         //   let fieldWidget = this.designer.formWidget.getWidgetRef(this.selectedWidget.options.name)
         //   if (!!fieldWidget && !!fieldWidget.refreshDefaultValue) {
@@ -97,6 +178,7 @@
       deleteOption(option, index) {
         this.checkOptionItems.splice(index, 1)
         this.checkOptionItemsToMap();
+        this.optionModelData.rfShowCol = this.checkOptionItems;
       },
       checkOptionItemsToMap(){
         this.checkOptionItems.forEach((opt,index)=>{
@@ -105,7 +187,6 @@
         })
       },
       handlerChangeShowCol(val){
-        console.log("选择",val)
 
         val.forEach(v=>{
           //删除
@@ -129,16 +210,17 @@
         })
 
         //设置当前值
-        this.optionModel.rfShowCol = this.checkOptionItems;
+        this.optionModelData.rfShowCol = this.checkOptionItems;
 
       },
 
       handlerIconClick(opt) {
+        console.log("jihuo>>>>")
         // this.optionStyleEditorFlag = !this.optionStyleEditorFlag;
-
 
         // this.optionStyleEditorFlag = true;
         // this.currentOption = opt;
+
       },
     }
   };

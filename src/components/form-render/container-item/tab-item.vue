@@ -1,5 +1,5 @@
 <template>
-  <container-item-wrapper :widget="widget">
+  <container-item-wrapper :widget="widget" :si-ge-fun-req="siGeFunReq">
 
     <div :key="widget.id" class="tab-container"
          v-show="!widget.options.hidden">
@@ -8,7 +8,7 @@
                      :disabled="tab.options.disabled" :name="tab.options.name">
           <template v-for="(subWidget, swIdx) in tab.widgetList">
             <template v-if="'container' === subWidget.category">
-              <component :is="subWidget.type + '-item'" :widget="subWidget" :key="swIdx" :parent-list="tab.widgetList"
+              <component :is="subWidget.type + '-item'" :widget="subWidget"  :si-ge-fun-req="siGeFunReq" :key="swIdx" :parent-list="tab.widgetList"
                               :index-of-parent-list="swIdx" :parent-widget="widget">
                 <!-- 递归传递插槽！！！ -->
                 <template v-for="slot in Object.keys($scopedSlots)" v-slot:[slot]="scope">
@@ -17,7 +17,7 @@
               </component>
             </template>
             <template v-else>
-              <component :is="subWidget.type + '-widget'" :field="subWidget" :key="swIdx" :parent-list="tab.widgetList"
+              <component :is="subWidget.type + '-widget'" :si-ge-fun-req="siGeFunReq" :field="subWidget" :key="swIdx" :parent-list="tab.widgetList"
                             :index-of-parent-list="swIdx" :parent-widget="widget">
                 <!-- 递归传递插槽！！！ -->
                 <template v-for="slot in Object.keys($scopedSlots)" v-slot:[slot]="scope">
@@ -51,6 +51,13 @@
     },
     props: {
       widget: Object,
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
     },
     inject: ['refList', 'sfRefList', 'globalModel'],
     data() {
@@ -67,6 +74,7 @@
 
     },
     created() {
+      console.log("tab-item>>>>>>>>>>")
       this.initRefList()
     },
     mounted() {

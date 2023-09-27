@@ -149,6 +149,16 @@ export default {
       lastRowCannotBeDeleted: 'The last row cannot be deleted.',
     },
 
+    cssOverflowAttr:{
+      //Overflow
+      visible:"visible",
+      hidden:"hidden",
+      clip:"clip",
+      scroll:"scroll",
+      auto:"auto",
+      overlay:"overlay",
+    },
+
     toolbar: {
       undoHint: 'Undo',
       redoHint: 'Redo',
@@ -230,11 +240,16 @@ export default {
       selectProfile: 'Select Profile',
       suggestGe: 'Suggest Ge',
       rfName: 'relation function',//
+      rfCustomFunCode: 'custom relation function code',
       rfCustomCol: 'custom column',//
       rfSubFun: 'subfunction',//如果是子功能时，可以不用维护关联条件
       rfShowCol: 'show col',
       rfShowRow: 'show row',
       rfCriteria: 'criteria',
+      rfHeight: 'height',
+      rfOverflowX: 'overflow-x',
+      rfOverflowY: 'overflow-y',
+      rfCssStyle: 'css style',
       uploadTip: 'Tip Content',
       withCredentials: 'Send Cookie',
       multipleSelect: 'File Multi-select',

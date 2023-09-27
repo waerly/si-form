@@ -1,18 +1,17 @@
 <!--关联功能-->
+<!--自定义关联功能编码-->
 <template>
-  <div>
-    <el-divider class="custom-divider-margin-top">{{i18nt('designer.setting.rfName')}}</el-divider>
-    <el-form-item :label="i18nt('designer.setting.rfSubFun')">
-      <el-switch @change="handlerChange" v-model="optionModel.rfSubFun"></el-switch>
-    </el-form-item>
-  </div>
+
+  <el-form-item v-if="!optionModel.rfSubFun" :label="i18nt('designer.setting.rfCustomFunCode')">
+    <el-input @change="handlerChange" v-model="optionModel.rfCustomFunCode"></el-input>
+  </el-form-item>
 </template>
 
 <script>
 import i18n from "@/utils/i18n"
 
 export default {
-  name: "rfSubFun-editor",
+  name: "rfCustomFunCode-editor",
   mixins: [i18n],
   props: {
     designer: Object,
@@ -25,7 +24,10 @@ export default {
     handlerChange(val) {
       // eslint-disable-next-line no-prototype-builtins
 
-    }
+    },
+    handlerSetCriteria() {
+
+    },
   }
 }
 </script>

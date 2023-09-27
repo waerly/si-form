@@ -3,7 +3,7 @@
 
 
 
-  <form-item-wrapper :designer="designer" :field="field" :rules="rules" :design-state="designState"
+  <form-item-wrapper class="relation-fun-wrapper"  :designer="designer" :field="field" :rules="rules" :design-state="designState"
                      :parent-widget="parentWidget" :parent-list="parentList" :index-of-parent-list="indexOfParentList"
                      :sub-form-row-index="subFormRowIndex" :sub-form-col-index="subFormColIndex"
                      :sub-form-row-id="subFormRowId">
@@ -11,17 +11,21 @@
 
 <!--    关联功能 -->
 
+    <span v-if="designState&&field.options.labelHidden">{{ field.options.label }}-[隐藏]</span>
 
-    <keep-alive>
-      <component :is="relationFunName" :ref="refName.gePmFormTableCp"
-                 :key="subGeFun&&subGeFun.funCode"
-                 :page-model="pageModel"
-                 :page-mode-type="pageModeType"
-                 :order-id="orderId" :base-entity="baseEntity"
-                 :sub-si-ge-fun="subGeFun">
+    <div :style="getCssStyle">
+      <keep-alive>
+        <component class="relation-fun-root" :is="relationFunName" :ref="refName.gePmFormTableCp"
+                   :key="subGeFun&&subGeFun.funCode"
+                   :page-model="pageModel"
+                   :page-mode-type="pageModeType"
+                   :order-id="orderId" :base-entity="baseEntity"
+                   :sub-si-ge-fun="subGeFun">
 
-      </component>
-    </keep-alive>
+        </component>
+      </keep-alive>
+    </div>
+
 
 
 <!--    <div v-show="true" :class="' el-input el-input&#45;&#45;'+field.options.size">
@@ -179,6 +183,42 @@ export default {
     allowDefaultFirstOption() {
       return (!!this.field.options.filterable && !!this.field.options.allowCreate)
     },
+    getCssStyle(){
+      //todo 待优化！
+      let cssStyle = this.field.options.rfCssStyle;
+      let cssStyleMap = {};
+      if (!isEmpty(cssStyle)) {
+        let cssStyleArray = cssStyle.split(";");
+
+        cssStyleArray.forEach(style=>{
+          if (style.includes(":")) {
+            let eachStyleArray = style.split(":");
+            if (eachStyleArray) {
+              cssStyleMap[eachStyleArray[0]] = eachStyleArray[1];
+            }
+          }
+        })
+      }
+
+      if (!isEmpty(this.field.options.rfHeight)) {
+        cssStyleMap['height'] = this.field.options.rfHeight;
+      }
+      if (!isEmpty(this.field.options.rfOverflowX)) {
+        cssStyleMap['overflow-x'] = this.field.options.rfOverflowX;
+      }
+      if (!isEmpty(this.field.options.rfOverflowY)) {
+        cssStyleMap['overflow-y'] = this.field.options.rfOverflowY;
+      }
+      cssStyle = "";
+      for (let key in cssStyleMap) {
+        let val=cssStyleMap[key];
+        cssStyle += `${key}:${val};`;
+      }
+
+      console.log("最后样式",cssStyle)
+
+      return cssStyle;
+    },
 
   },
   beforeCreate() {
@@ -220,10 +260,10 @@ export default {
   methods: {
     isObjEmpty,
 
+
     //加载动态表
     onloadGeFunTableCp(){
 
-      console.log("field---------",this.field)
 
       //判断当前组件是否加载成功
       if (window.siGeFunCp && window.siGeFunCp.gePmFormTableCp) {
@@ -434,6 +474,10 @@ export default {
 }
 
 .user-container {
+  border: 1px solid #e0e0e0;
+}
+
+.form-widget-main .relation-fun-wrapper ::v-deep >.el-form-item{
   border: 1px solid #e0e0e0;
 }
 

@@ -855,6 +855,9 @@ export function createDesigner(vueInstance) {
     handleEvent(evtName, callback) {  //用于兄弟组件接收事件
       this.vueInstance.$on(evtName, (data) => callback(data))
     },
+    removeEvent(evtName) {
+      this.vueInstance.$off(evtName)
+    },
 
     setCssClassList(cssClassList) {
       this.cssClassList = cssClassList

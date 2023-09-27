@@ -141,6 +141,8 @@ export default {
       noChineseValidator: '非中文字符',
       chineseValidator: '仅中文字符',
 
+
+
       rowspanNotConsistentForMergeEntireRow: '存在行高不一致的单元格, 无法合并整行.',
       colspanNotConsistentForMergeEntireColumn: '存在列宽不一致的单元格, 无法合并整列.',
       rowspanNotConsistentForDeleteEntireRow: '存在行高不一致的单元格, 不可删除整行.',
@@ -148,7 +150,15 @@ export default {
       lastColCannotBeDeleted: '最后一列不可删除.',
       lastRowCannotBeDeleted: '最后一行不可删除.',
     },
-
+    cssOverflowAttr:{
+      //Overflow
+      visible:"visible-显示",
+      hidden:"hidden 隐藏",
+      clip:"clip 裁剪(类似hidden)",
+      scroll:"scroll 滚动",
+      auto:"auto 自动",
+      overlay:"overlay 自动覆盖在上面",
+    },
     toolbar: {
       undoHint: '撤销',
       redoHint: '重做',
@@ -230,11 +240,16 @@ export default {
       selectProfile: '圆形图片',
       suggestGe: '建议搜索通用',
       rfName: '关联功能',//
+      rfCustomFunCode: '自定义关联功能编码',//如果该值不为空时，优先取该值
       rfCustomCol: '自定义列',//
       rfSubFun: '子功能',//如果是子功能时，可以不用维护关联条件
       rfShowCol: '显示列',
       rfShowRow: '显示条数',
       rfCriteria: '过滤条件',
+      rfHeight: '高度',
+      rfOverflowX: 'overflow-x',
+      rfOverflowY: 'overflow-y',
+      rfCssStyle: '关联功能css样式',
       uploadTip: '上传提示内容',
       withCredentials: '发送cookie凭证',
       multipleSelect: '文件可多选',

@@ -117,6 +117,16 @@
     },
     provide() {
       return {
+        refList: null,//兼容使用
+        formConfig: this.formConfig,//兼容使用
+        // globalOptionData: null,//兼容使用
+        // globalModel:null,//兼容使用
+        // getOptionData:null,//兼容使用
+        globalOptionData: this.optionData,
+        getOptionData: () => this.optionData,
+        globalModel: {
+          formModel: this.formModel,
+        },
         isSubFormChildWidget: () => this.subFormChildWidgetFlag,
       }
     },
@@ -191,7 +201,7 @@
       //监听字段组件选中事件
       this.designer.handleEvent('field-selected', (parentWidget) => {
         this.subFormChildWidgetFlag = !!parentWidget && (parentWidget.type === 'sub-form');
-        //console.log('subFormChildWidgetFlag', this.subFormChildWidgetFlag)
+        // console.log('subFormChildWidgetFlag', this.subFormChildWidgetFlag)
       })
     },
     mounted() {

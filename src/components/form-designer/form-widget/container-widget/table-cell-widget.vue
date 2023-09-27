@@ -10,11 +10,11 @@
       <transition-group name="fade" tag="div" class="form-widget-list">
         <template v-for="(subWidget, swIdx) in widget.widgetList">
           <template v-if="'container' === subWidget.category">
-            <component :is="subWidget.type + '-widget'" :widget="subWidget" :designer="designer" :key="subWidget.id" :parent-list="widget.widgetList"
+            <component :is="subWidget.type + '-widget'" :widget="subWidget" :designer="designer" :si-ge-fun-req="siGeFunReq" :key="subWidget.id" :parent-list="widget.widgetList"
                               :index-of-parent-list="swIdx" :parent-widget="widget"></component>
           </template>
           <template v-else>
-            <component :is="subWidget.type + '-widget'" :field="subWidget" :designer="designer" :key="subWidget.id" :parent-list="widget.widgetList"
+            <component :is="subWidget.type + '-widget'" :field="subWidget" :designer="designer" :si-ge-fun-req="siGeFunReq" :key="subWidget.id" :parent-list="widget.widgetList"
                           :index-of-parent-list="swIdx" :parent-widget="widget" :design-state="true"></component>
           </template>
         </template>
@@ -79,6 +79,13 @@
       rowArray: Array,
 
       designer: Object,
+      /*通用功能*/
+      siGeFunReq: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
     },
     computed: {
       selected() {

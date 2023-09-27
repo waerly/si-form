@@ -1,6 +1,16 @@
 <!--关联功能-->
 <template>
-  <el-form-item :label="i18nt('designer.setting.rfCriteria')">
+  <el-form-item label=" ">
+    <span slot="label">
+        {{i18nt('designer.setting.rfCriteria')}}
+        <el-tooltip
+          effect="dark"
+          content="暂不支持！"
+          placement="right"
+        >
+          <i class="el-icon-info" ></i>
+        </el-tooltip>
+    </span>
     <el-input @change="handlerChange" v-model="optionModel.rfCriteria"></el-input>
     <el-button type="info" @click="handlerSetCriteria">
       {{i18nt('designer.hint.widgetSetting')}}</el-button>

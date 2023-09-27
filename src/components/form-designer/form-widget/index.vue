@@ -11,7 +11,7 @@
         <transition-group name="fade" tag="div" class="form-widget-list">
           <template v-for="(widget, index) in designer.widgetList">
             <template v-if="'container' === widget.category">
-              <component :is="getWidgetName(widget)" :widget="widget" :designer="designer" :key="widget.id" :parent-list="designer.widgetList"
+              <component :is="getWidgetName(widget)" :si-ge-fun-req="siGeFunReq" :widget="widget" :designer="designer" :key="widget.id" :parent-list="designer.widgetList"
                                 :index-of-parent-list="index" :parent-widget="null"></component>
             </template>
             <template v-else>
