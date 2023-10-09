@@ -1,7 +1,8 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.defaultValue')">
     <el-switch v-model="optionModel.defaultValue" @change="emitDefaultValueChange"
-               active-text="true" inactive-text="false"></el-switch>
+               :inactive-value="optionModel.inactiveVal" :active-value="optionModel.activeVal"
+               :active-text="optionModel.activeVal" :inactive-text="optionModel.inactiveVal"></el-switch>
   </el-form-item>
 </template>
 

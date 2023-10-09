@@ -299,6 +299,8 @@ export default {
       switchWidth: '开关宽度（像素）',
       activeText: '开启时文字描述',
       inactiveText: '关闭时文字描述',
+      activeVal: '开启时值',
+      inactiveVal: '关闭时值',
       activeColor: '开启时背景色',
       inactiveColor: '关闭时背景色',
       maxStars: '最大评分值',

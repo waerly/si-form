@@ -100,6 +100,8 @@ const ADVANCED_PROPERTIES = {
   'switchWidth'       :            'switchWidth-editor',
   'activeText'        :            'activeText-editor',
   'inactiveText'      :            'inactiveText-editor',
+  'activeVal'        :            'activeVal-editor',
+  'inactiveVal'      :            'inactiveVal-editor',
   'activeColor'       :            'activeColor-editor',
   'inactiveColor'     :            'inactiveColor-editor',
   'lowThreshold'      :            'lowThreshold-editor',

@@ -4,7 +4,8 @@
                      :sub-form-row-index="subFormRowIndex" :sub-form-col-index="subFormColIndex" :sub-form-row-id="subFormRowId">
     <el-switch ref="fieldEditor" v-model="fieldModel"
                :disabled="field.options.disabled"
-               :active-text="field.options.activeText" :inactive-text="field.options.inactiveText"
+               :active-text="field.options.activeText" :active-value="field.options.activeVal" :inactive-value="field.options.inactiveVal"
+               :inactive-text="field.options.inactiveText"
                :active-color="field.options.activeColor" :inactive-color="field.options.inactiveColor"
                :width="field.options.switchWidth"
                @change="handleChangeEvent">

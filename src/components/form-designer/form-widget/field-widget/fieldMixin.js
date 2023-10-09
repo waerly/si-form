@@ -1,5 +1,6 @@
 import {deepClone} from "@/utils/util"
 import FormValidators from '@/utils/validators'
+import fa from "element-ui/src/locale/lang/fa";
 
 export default {
   inject: ['refList', 'formConfig', 'globalOptionData', 'globalModel', 'getOptionData'],
@@ -69,7 +70,7 @@ export default {
       } else if (this.formModel[this.field.options.name] === undefined) {  //如果formModel为空对象，则初始化字段值为null!!
         this.formModel[this.field.options.name] = null
       } else {
-        this.fieldModel = this.formModel[this.field.options.name]
+        this.fieldModel = this.formModel[this.field.options.name];
       }
       this.oldFieldValue = deepClone(this.fieldModel)
       this.initFileList()  //处理图片上传、文件上传字段
