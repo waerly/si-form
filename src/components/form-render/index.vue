@@ -547,10 +547,10 @@
         }
       },
 
-      setFieldValue(fieldName, fieldValue) { //单个更新字段值
+      setFieldValue(fieldName, fieldValue, emitFieldChange = true) { //单个更新字段值
         let fieldRef = this.getWidgetRef(fieldName)
         if (!!fieldRef && !!fieldRef.setValue) {
-          fieldRef.setValue(fieldValue)
+          fieldRef.setValue(fieldValue, emitFieldChange)
         }
 
         if (!fieldRef) { //如果是子表单字段

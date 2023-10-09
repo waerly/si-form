@@ -478,7 +478,7 @@ export default {
 }
 
 .form-widget-main .relation-fun-wrapper ::v-deep >.el-form-item{
-  border: 1px solid #e0e0e0;
+  border: 1px dotted #e0e0e0;
 }
 
 </style>

@@ -441,7 +441,7 @@ export default {
       注意：VFormRender的setFormData方法不会触发子表单内field-widget的setValue方法，
       因为setFormData方法调用后，子表单内所有field-widget组件已被清空，接收不到setFormData事件！！
     * */
-    setValue(newValue) {
+    setValue(newValue,emitFieldChange=true) {
       /* if ((this.field.type === 'picture-upload') || (this.field.type === 'file-upload')) {
         this.fileList = newValue
       } else */ if (!!this.field.formItemFlag) {
@@ -450,7 +450,9 @@ export default {
         this.initFileList()
 
         this.syncUpdateFormModel(newValue)
-        this.emitFieldDataChange(newValue, oldValue)
+        if (emitFieldChange) {
+          this.emitFieldDataChange(newValue, oldValue);
+        }
       }
     },
 
