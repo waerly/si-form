@@ -3,7 +3,7 @@
 
     <el-row :key="widget.id" :gutter="widget.options.gutter" class="grid-container"
             :class="[customClass]"
-            :ref="widget.id" v-show="!widget.options.hidden">
+            :ref="widget.id" v-show="!widget.options.hidden" :style="paddingStyle">
       <template v-for="(colWidget, colIdx) in widget.cols">
         <grid-col-item :widget="colWidget" :key="colIdx" :parent-list="widget.cols"
                        :index-of-parent-list="colIdx" :parent-widget="widget"
@@ -46,6 +46,29 @@
       },
     },
     inject: ['refList', 'sfRefList', 'globalModel'],
+    computed: {
+      //填充样式
+      paddingStyle(){
+        let paddingTop= this.widget.options.paddingTop || ''
+        let paddingRight= this.widget.options.paddingRight || ''
+        let paddingBottom= this.widget.options.paddingBottom || ''
+        let paddingLeft= this.widget.options.paddingLeft || ''
+        let paddingStyle = "";
+        if (paddingTop !== '') {
+          paddingStyle += `padding-top:${paddingTop}px !important;`;
+        }
+        if (paddingRight !== '') {
+          paddingStyle += `padding-right:${paddingRight}px;`;
+        }
+        if (paddingBottom !== '') {
+          paddingStyle += `padding-bottom:${paddingBottom}px;`;
+        }
+        if (paddingLeft !== '') {
+          paddingStyle += `padding-left:${paddingLeft}px;`;
+        }
+        return paddingStyle;
+      }
+    },
     created() {
       this.initRefList()
     },

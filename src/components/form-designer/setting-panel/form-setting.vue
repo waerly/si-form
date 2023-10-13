@@ -37,6 +37,9 @@
               <el-option v-for="(item, idx) in cssClassList" :key="idx" :label="item" :value="item"></el-option>
             </el-select>
           </el-form-item>
+          <el-form-item :label="i18nt('designer.setting.marginBottom')">
+            <el-input-number v-model="formConfig.marginBottom" :min="0" style="width: 100%"></el-input-number>
+          </el-form-item>
           <!-- -->
           <el-form-item :label="i18nt('designer.setting.globalFunctions')">
             <el-button type="info" icon="el-icon-edit" plain round @click="editGlobalFunctions">{{i18nt('designer.setting.addEventHandler')}}</el-button>

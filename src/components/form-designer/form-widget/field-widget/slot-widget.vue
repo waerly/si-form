@@ -2,7 +2,7 @@
   <static-content-wrapper :designer="designer" :field="field" :design-state="designState"
                           :parent-widget="parentWidget" :parent-list="parentList" :index-of-parent-list="indexOfParentList"
                           :sub-form-row-index="subFormRowIndex" :sub-form-col-index="subFormColIndex" :sub-form-row-id="subFormRowId">
-    <div :class="[!!designState ? 'slot-wrapper-design' : 'slot-wrapper-render']">
+    <div v-if="!field.options.hidden" :class="[!!designState ? 'slot-wrapper-design' : 'slot-wrapper-render']">
       <!-- -->
       <slot :name="field.options.name" v-bind:formModel="formModel"></slot>
       <!-- -->

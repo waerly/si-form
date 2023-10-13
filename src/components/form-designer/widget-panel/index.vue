@@ -84,7 +84,7 @@
         </el-tab-pane>
 
       </el-tabs>
-      <!-- 测试按钮 -->
+<!--       测试按钮 -->
 <!--            <el-button @click="addFieldByWidgetType('input')">
               测试
             </el-button>-->

@@ -9,6 +9,10 @@ export const containers = [
       name: '',
       hidden: false,
       gutter: 12,
+      paddingTop: null,//行高度
+      paddingRight: null,//行高度
+      paddingBottom: null,//行高度
+      paddingLeft: null,//行高度
       colHeight: null,  //栅格列统一高度属性，用于解决栅格列设置响应式布局浮动后被挂住的问题！！
       customClass: '',  //自定义css类名
     }
@@ -93,6 +97,27 @@ export const containers = [
     }
   },
 
+  {
+    "type": "sub-form",
+    "category": "container",
+    "icon": "sub-form",
+    "widgetList": [],
+    "options": {
+      "name": "",
+      "showBlankRow": true,
+      "showRowNumber": true,
+      "labelAlign": "label-center-align",
+      "hidden": false,
+      "disabled": false,
+      "actionColumnPosition": "left",
+      "customClass": [],
+      "onSubFormRowAdd": "",
+      "onSubFormRowInsert": "",
+      "onSubFormRowDelete": "",
+      "onSubFormRowChange": ""
+    },
+    "id": ""
+  }
 
 ]
 
@@ -962,6 +987,7 @@ export const advancedFields = [
     },
   },
 
+
   {
     type: 'cascader',
     icon: 'cascader-field',
@@ -1140,6 +1166,18 @@ export const advancedFields = [
       onBlur: '',
       onValidate: '',
     },
+  },
+  {
+    type: "slot",
+    icon: "slot-field",
+    formItemFlag: false,
+    options: {
+      name: "",
+      label: "slot",
+      customClass: "",
+      hidden: false,
+    },
+    // "id": "slot36401"
   },
 
 ]

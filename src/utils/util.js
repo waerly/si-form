@@ -328,6 +328,7 @@ export function getDefaultFormConfig() {
     refName: 'vForm',
     rulesName: 'rules',
     labelWidth: 80,
+    marginBottom:0,
     labelPosition: 'left',
     size: '',
     labelAlign: 'label-left-align',

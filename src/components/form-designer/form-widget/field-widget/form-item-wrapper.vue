@@ -15,7 +15,7 @@
                   :title="field.options.labelTooltip"
                   :rules="rules" :prop="getPropName()"
                   :class="[selected ? 'selected' : '', labelAlign, customClass, field.options.required ? 'required' : '']"
-                  @click.native.stop="selectField(field)">
+                  @click.native.stop="selectField(field)" :style="getFormConfigMarginBottom">
 
       <span v-if="!!field.options.labelIconClass" slot="label" class="custom-label">
         <template v-if="field.options.labelIconPosition === 'front'">
@@ -57,6 +57,7 @@
 
 <script>
   import i18n from "@/utils/i18n";
+  import {buildDefaultFormJson} from "@/utils/util";
 
   export default {
     name: "form-item-wrapper",
@@ -89,6 +90,10 @@
       rules: Array,
     },
     inject: ['formConfig'],
+    data() {
+      return {
+      }
+    },
     computed: {
       selected() {
         return !!this.designer && this.field.id === this.designer.selectedId
@@ -141,13 +146,27 @@
       subFormItemFlag() {
         return !!this.parentWidget ? this.parentWidget.type === 'sub-form' : false
       },
-
+      getFormConfigMarginBottom(){
+        let formConfig = this.getFormConfigAuto();
+        let marginBottom = formConfig && formConfig.marginBottom;
+        let marginBottomCss = "";
+        if (!!marginBottom) {
+          marginBottomCss= 'margin-bottom:'+marginBottom+'px';
+        }
+        return marginBottomCss;
+      },
     },
     created() {
-      //
     },
     methods: {
 
+      getFormConfigAuto(){
+        if (!!this.designer) {
+          return this.designer.formConfig;
+        } else {
+          return this.formConfig;
+        }
+      },
       selectField(field) {
         if (!!this.designer) {
           this.designer.setSelected(field)

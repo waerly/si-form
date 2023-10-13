@@ -14,13 +14,14 @@
 
     <el-row :key="widget.id" :gutter="widget.options.gutter" class="grid-container"
             :class="[selected ? 'selected' : '', customClass]"
-            @click.native.stop="selectWidget(widget)">
+            @click.native.stop="selectWidget(widget)" :style="paddingStyle">
       <template v-for="(colWidget, colIdx) in widget.cols">
         <grid-col-widget :widget="colWidget" :designer="designer" :key="colWidget.id" :parent-list="widget.cols"
                          :index-of-parent-list="colIdx" :parent-widget="widget"
                          :col-height="widget.options.colHeight"></grid-col-widget>
       </template>
     </el-row>
+
 
   </container-wrapper>
 </template>
@@ -63,6 +64,28 @@
       customClass() {
         return this.widget.options.customClass || ''
       },
+
+      //填充样式
+      paddingStyle(){
+        let paddingTop= this.widget.options.paddingTop || ''
+        let paddingRight= this.widget.options.paddingRight || ''
+        let paddingBottom= this.widget.options.paddingBottom || ''
+        let paddingLeft= this.widget.options.paddingLeft || ''
+        let paddingStyle = "";
+        if (paddingTop !== '') {
+          paddingStyle += `padding-top:${paddingTop}px !important;`;
+        }
+        if (paddingRight !== '') {
+          paddingStyle += `padding-right:${paddingRight}px;`;
+        }
+        if (paddingBottom !== '') {
+          paddingStyle += `padding-bottom:${paddingBottom}px;`;
+        }
+        if (paddingLeft !== '') {
+          paddingStyle += `padding-left:${paddingLeft}px;`;
+        }
+        return paddingStyle;
+      }
 
     },
     watch: {
