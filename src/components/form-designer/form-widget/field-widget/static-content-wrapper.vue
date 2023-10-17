@@ -1,6 +1,6 @@
 <template>
   <div class="field-wrapper" :class="{'design-time-bottom-margin': !!this.designer}" :style="{display: displayStyle}">
-    <div class="static-content-item" v-if="!field.options.hidden || (designState === true)" :style="{display: displayStyle}"
+    <div class="static-content-item" v-if="!field.options.hidden || (designState === true)" :style="{display: displayStyle,'min-height':minHeightStyle}"
          :class="[selected ? 'selected' : '', customClass]" @click.stop="selectField(field)">
       <slot></slot>
     </div>
@@ -68,7 +68,10 @@
       customClass() {
         return !!this.field.options.customClass ? this.field.options.customClass.join(' ') : ''
       },
-
+      minHeightStyle(){
+        // return !!this.field.options.sciMinHeight ? `min-height:${this.field.options.sciMinHeight}px` : "";
+        return !!this.field.options.sciMinHeight ? `${this.field.options.sciMinHeight}px` : "";
+      }
     },
     methods: {
 

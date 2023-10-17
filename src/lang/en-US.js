@@ -339,6 +339,8 @@ export default {
       topPosition: 'Top',
       leftPosition: 'Left',
       labelAlign: 'Label Align',
+      textAlign: 'Text Align',
+      sciMinHeight: 'Content Min Height(px)',
       leftAlign: 'Left',
       centerAlign: 'Center',
       rightAlign: 'Right',

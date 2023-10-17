@@ -19,6 +19,7 @@
                    :key="subGeFun&&subGeFun.funCode"
                    :page-model="pageModel"
                    :page-mode-type="pageModeType"
+                   :rf-height="field.options.rfHeight"
                    :order-id="orderId" :base-entity="baseEntity"
                    :sub-si-ge-fun="subGeFun">
 
@@ -184,12 +185,10 @@ export default {
       return (!!this.field.options.filterable && !!this.field.options.allowCreate)
     },
     getCssStyle(){
-      //todo 待优化！
       let cssStyle = this.field.options.rfCssStyle;
       let cssStyleMap = {};
       if (!isEmpty(cssStyle)) {
         let cssStyleArray = cssStyle.split(";");
-
         cssStyleArray.forEach(style=>{
           if (style.includes(":")) {
             let eachStyleArray = style.split(":");
@@ -215,7 +214,6 @@ export default {
         cssStyle += `${key}:${val};`;
       }
 
-      console.log("最后样式",cssStyle)
 
       return cssStyle;
     },
@@ -264,10 +262,9 @@ export default {
     //加载动态表
     onloadGeFunTableCp(){
 
-
       //判断当前组件是否加载成功
       if (window.siGeFunCp && window.siGeFunCp.gePmFormTableCp) {
-        console.log("window.siGeFunCp", window.siGeFunCp);
+        // console.log("window.siGeFunCp", window.siGeFunCp);
         Vue.component('gePmFormTableCp', window.siGeFunCp.gePmFormTableCp);
         this.relationFunName = "gePmFormTableCp";
       }

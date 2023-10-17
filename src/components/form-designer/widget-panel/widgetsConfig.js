@@ -696,6 +696,7 @@ export const basicFields = [
       hidden: false,
       textContent: 'static text',
       fontSize: '13px',
+      textAlign: 'left',
       //-------------------
       customClass: '',  //自定义css类名
       //-------------------
@@ -713,12 +714,14 @@ export const basicFields = [
       columnWidth: '200px',
       hidden: false,
       htmlContent: '<b>html text</b>',
+      sciMinHeight: null,
       //-------------------
       customClass: '',  //自定义css类名
       //-------------------
       onCreated: '',
       onMounted: '',
     },
+
   },
 
   {

@@ -339,6 +339,8 @@ export default {
       topPosition: '顶部',
       leftPosition: '左边',
       labelAlign: '标签对齐',
+      textAlign: '文本对齐',
+      sciMinHeight: '文本最小高度(px)',
       leftAlign: '居左',
       centerAlign: '居中',
       rightAlign: '居右',
