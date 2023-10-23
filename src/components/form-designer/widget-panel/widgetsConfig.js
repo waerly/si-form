@@ -372,6 +372,12 @@ export const basicFields = [
       labelIconClass: null,
       labelIconPosition: 'rear',
       labelTooltip: null,
+
+      //添加后置按钮
+      appendButton: false,
+      appendButtonDisabled: false,
+      buttonIcon: 'el-icon-plus',
+      appendButtonText: '添加',
       //-------------------
       onCreated: '',
       onMounted: '',
@@ -380,6 +386,9 @@ export const basicFields = [
       onFocus: '',
       onBlur: '',
       onValidate: '',
+
+      onAppendBottomButtonClick: '',
+      // onAppendButtonClick: '',
     },
   },
 

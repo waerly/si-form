@@ -299,6 +299,7 @@ export default {
       appendButton: '添加后置按钮',
       appendButtonDisabled: '后置按钮禁用',
       appendButtonIcon: '后置按钮Icon',
+      appendButtonText: '按钮文字',
       buttonIcon: '按钮Icon',
       switchWidth: '开关宽度（像素）',
       activeText: '开启时文字描述',

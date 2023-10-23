@@ -417,6 +417,21 @@ export default {
       }
     },
 
+    //添加 select 下拉后面跟自定义方法
+    emitAppendBottomButtonClick() {
+      if (!!this.designState) { //设计状态不触发点击事件
+        return
+      }
+
+      if (!!this.field.options.onAppendBottomButtonClick) {
+        let customFn = new Function(this.field.options.onAppendBottomButtonClick)
+        customFn.call(this)
+      } else {
+        /* 必须调用mixins中的dispatch方法逐级向父组件发送消息！！ */
+        this.dispatch('VFormRender', 'appendBottomButtonClick', [this])
+      }
+    },
+
     //--------------------- 事件处理 end ------------------//
 
     //--------------------- 以下为组件支持外部调用的API方法 begin ------------------//

@@ -28,7 +28,7 @@
                :placeholder="field.options.placeholder || i18nt('render.hint.selectPlaceholder')"
                :remote="field.options.remote" :remote-method="remoteQuery"
                @focus="handleFocusCustomEvent" @blur="handleBlurCustomEvent"
-               @change="handleChangeEvent">
+               @change="handleChangeEvent" @visible-change="v => visibleChange(v, 'fieldEditor', emitAppendBottomButtonClick)">
       <template #prefix v-if="isUseCustom(getItem())&&!field.options.multiple">
         <div class="custom-selection"  >
           <div :style="'overflow: auto;border-radius: 5px;padding: 0 4px;'+(currentItem.bc?'background:'+currentItem.bc:'')">
@@ -54,6 +54,22 @@
         </div>
       </el-option>
     </el-select>
+
+
+<!--    <el-button  v-if="field.options.appendButton" :disabled="field.options.disabled || field.options.appendButtonDisabled"
+               :class="field.options.buttonIcon" @click.native="emitAppendButtonClick"></el-button>-->
+
+
+
+
+
+<!--    <ul class="el-cascader-menu__list" style="border-top: solid 1px #E4E7ED;padding:0">
+      <li class="el-cascader-node" style="height:38px;line-height: 38px">
+        <i class="el-icon-plus"></i>
+        <span class="el-cascader-node__label">新增商品分类</span>
+        <i class="el-icon-arrow-right el-cascader-node__postfix"/>
+      </li>
+    </ul>-->
   </form-item-wrapper>
 </template>
 
@@ -110,6 +126,10 @@
           mini: 28
         },
         currentItem:{},
+
+        form: {
+          gender: '', // 用于存储选中的性别
+        }
       }
     },
     computed: {
@@ -155,7 +175,53 @@
         let currentItem=this.field.options.optionItems.find(item=>item.value==this.fieldModel);
         this.currentItem = currentItem;
         return currentItem;
-      }
+      },
+      //判断当前按钮是否被禁用
+      appendBottomButtonIsDisabled(){
+        return (this.field.options.disabled || this.field.options.appendButtonDisabled);
+      },
+      //
+      /**
+       * 为element-ui的Select和Cascader添加弹层底部操作按钮
+       * @param visible
+       * @param refName  设定的ref名称
+       * @param onClick  底部操作按钮点击监听
+       */
+      visibleChange(visible, refName, onClick) {
+
+        //如果系统中的权限没有该功能的话，将会隐藏 todo 后期支持，权限位置为，this.getFormRef().siGeFunReq.siGeFun中属性里面
+
+
+        if (visible) {
+          const ref = this.$refs[refName];
+          let popper = ref.$refs.popper;
+          if (popper.$el) popper = popper.$el;
+          if (!Array.from(popper.children).some(v => v.className === 'el-cascader-menu__list')) {
+            const el = document.createElement('ul');
+            el.className = 'el-cascader-menu__list';
+            el.style = 'border-top: solid 1px #E4E7ED; padding:0; color: #606266;';
+            el.innerHTML = `<li class="el-cascader-node" style="height:38px;line-height: 38px;${ (this.appendBottomButtonIsDisabled())? 'color: #b7b7b7;':''}">
+            <i class="${this.field.options.buttonIcon}"></i>
+            <span class="el-cascader-node__label">${this.field.options.appendButtonText}</span>
+            <i class="el-icon-arrow-right el-cascader-node__postfix"/>
+            </li>`;
+            popper.appendChild(el);
+            el.onclick = () => {
+              if (this.appendBottomButtonIsDisabled()) {
+                return;
+              }
+              // 底部按钮的点击事件 点击后想触发的逻辑也可以直接写在这
+              onClick && onClick.call(this);
+              // 以下代码实现点击后弹层隐藏 不需要可以删掉
+              if (ref.toggleDropDownVisible) {
+                ref.toggleDropDownVisible(false);
+              } else {
+                ref.visible = false;
+              }
+            };
+          }
+        }
+      },
     }
   }
 </script>

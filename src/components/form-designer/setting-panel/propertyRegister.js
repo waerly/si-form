@@ -125,6 +125,7 @@ const ADVANCED_PROPERTIES = {
   'labelIconPosition' :            'labelIconPosition-editor',
   'labelTooltip'      :            'labelTooltip-editor',
   'appendButton'      :            'appendButton-editor',
+  'appendButtonText'  :            'appendButtonText-editor',
   'appendButtonDisabled':          'appendButtonDisabled-editor',
   'buttonIcon'        :            'buttonIcon-editor',
 
@@ -146,6 +147,7 @@ const EVENT_PROPERTIES = {
   'onFileRemove'      :            'onFileRemove-editor',
   'onValidate'        :            'onValidate-editor',
   'onAppendButtonClick':           'onAppendButtonClick-editor',
+  'onAppendBottomButtonClick':     'onAppendBottomButtonClick-editor',
 
   //容器
   'onSubFormRowAdd'   :            'onSubFormRowAdd-editor',

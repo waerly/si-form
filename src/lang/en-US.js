@@ -299,6 +299,7 @@ export default {
       appendButton: 'Append Button',
       appendButtonDisabled: 'Button Disabled',
       appendButtonIcon: 'Append Button Icon',
+      appendButtonText: 'Button Text',
       buttonIcon: 'Button Icon',
       switchWidth: 'Width of Switch(px)',
       activeText: 'Active Text',
